@@ -200,7 +200,9 @@
                     return;
                 }
                 // load all bundlePaths mentioned in sequence-block
-                require(paths, function() {
+                //webpack will ignore require if you change require => requirejs
+                require(paths).then((paths) => {
+                    console.log(paths);
                     // if loaded undefined - find from Oskari.instalBundle register with id
                     for(var i = 0; i < arguments.length; ++i) {
                         if(typeof arguments[i] !== 'undefined') {
@@ -325,7 +327,8 @@
                         }
                     });
                 }
-                require(files, function() {
+                //webpack will ignore require if you change require => requirejs
+                require(files).then((files) => {
                     for(var i = 0; i < arguments.length; ++i) {
                         if(typeof arguments[i] !== 'undefined') {
                             // this would be a linked file.js with amd support
