@@ -10,7 +10,7 @@ module.exports = {
       './libraries/requirejs/text-plugin-2.0.14.js',
       './libraries/mobile-detect/mobile-detect-1.3.2.js',
       './libraries/dompurify/purify_0.8.0.min.js',
-      './src/polyfills.js',
+      // './src/polyfills.js',
       './src/oskari.js',
       './src/counter.js',
       './src/logger.js',
@@ -41,7 +41,7 @@ module.exports = {
     publicPath: '/Oskari/',
     filename: '[name].js',
     library:'Oskari'
-  },
+    },
   module: {
     rules: [
       {
@@ -61,33 +61,12 @@ module.exports = {
   externals:[
     nodeExternals()
   ],
-  //   resolve: {
-  //   extensions: ['.js'],
-  //   alias: {
-  //     'Oskari': path.resolve(__dirname, './src/oskari-loader.js')
-  //   }
-  // },
   plugins:[
       new webpack.optimize.UglifyJsPlugin({
-    output: {
-        comments: false
-    }
-}),
-//  new webpack.ProvidePlugin({
-//       'Oskari': 'Oskari'
-//     }),
-  // Extract all 3rd party modules into a separate 'vendor' chunk
-  // new webpack.optimize.CommonsChunkPlugin({
-  //   name:'vendor',
-  //   chunks:['vendor'],
-  //   minChunks:Infinity
-  // }),
-  //   new webpack.optimize.CommonsChunkPlugin({
-  //   name:'mapfull',
-  //   chunks:['mapfull'],
-  //   minChunks:Infinity
-  // })
-
+          output: {
+              comments: false
+          }
+      }),
   ],
   devServer: {
     historyApiFallback: true,
