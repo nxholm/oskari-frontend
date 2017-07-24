@@ -1,8 +1,7 @@
 
-let path = require('path')
-let webpack = require('webpack')
-let glob = require('glob')
-let bundles = require('./oskari-bundle-loader');
+import path from 'path';
+import webpack from 'webpack';
+import bundles from './oskari-bundle-loader';
 
 module.exports = {
   entry:{
@@ -31,10 +30,10 @@ module.exports = {
   },
   plugins:[
       new webpack.optimize.UglifyJsPlugin({
-    output: {
-        comments: false
-    }
-  }),
+        output: {
+            comments: false
+        }
+    }),
   ],
   performance: {
     hints: false

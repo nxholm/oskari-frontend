@@ -1,16 +1,16 @@
-var path = require('path')
-var webpack = require('webpack')
-var glob = require('glob')
-var nodeExternals = require('webpack-node-externals')
+import path from 'path';
+import webpack from 'webpack';
+import glob from 'glob';
+import nodeExternals from 'webpack-node-externals';
 
 module.exports = {
   entry:{
-    'bundle':[
+  'bundle':[
       './libraries/requirejs/require-2.2.0.min.js',
       './libraries/requirejs/text-plugin-2.0.14.js',
       './libraries/mobile-detect/mobile-detect-1.3.2.js',
       './libraries/dompurify/purify_0.8.0.min.js',
-      // './src/polyfills.js',
+      './src/polyfills.js',
       './src/oskari.js',
       './src/counter.js',
       './src/logger.js',
@@ -58,8 +58,13 @@ module.exports = {
       }
     ]
   },
+  resolve: {
+      alias: {
+        jQuery: "jquery/src/jquery"
+      }
+  },
   externals:[
-    nodeExternals()
+    // nodeExternals()
   ],
   plugins:[
       new webpack.optimize.UglifyJsPlugin({
@@ -67,6 +72,10 @@ module.exports = {
               comments: false
           }
       }),
+      new webpack.ProvidePlugin({
+        $: "jquery",
+        jQuery: "jquery"
+     })
   ],
   devServer: {
     historyApiFallback: true,
