@@ -1,10 +1,11 @@
-import json from './bundlesToLoad.js';
-module.exports = () => {
-    let bundles = [];
-    for (const key of Object.keys(json)) {
-        json[key].forEach( (file) => {
-            bundles.push(file);
+import { bundles } from './bundlesToLoad.js';
+
+export default () => {
+    let bundleFilePaths = [];
+    for (const key of Object.keys(bundles)) {
+        bundles[key].forEach( (file) => {
+            bundleFilePaths.push(file);
         });
     }
-    return bundles;
+    return bundleFilePaths;
 }
