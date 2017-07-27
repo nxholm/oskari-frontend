@@ -3,7 +3,7 @@
 	var cs = o.clazz;
 
     /* @class Oskari.ModuleSpec
-     * Helper class instance of which is returned from oskari 2.0 api
+     * Helper class instance of which is returned from Oskari 2.0 api
      * Returned class instance may be used to chain class definition calls.
      *
      * @param {Object} classInfo ClassInfo
