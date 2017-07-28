@@ -2,9 +2,9 @@
 * Adds internalization support for Oskari
 */
 (function(O) {
-	var OskariLang = 'en';
-	var localizations = {};
-	var supportedLocales = null;
+	let OskariLang = 'en';
+	let localizations = {};
+	let supportedLocales = null;
 
 	// ------------------------------------------------
 	// Locales/lang
@@ -65,7 +65,7 @@
 	* @return {string[]} Supported languages
 	*/
 	O.getSupportedLanguages = function () {
-		var langs = [],
+		let langs = [],
 		supported = O.getSupportedLocales(),
 		locale,
 		i;
@@ -85,12 +85,12 @@
 	* @return {string} Default language
 	*/
 	O.getDefaultLanguage = function () {
-		var supported = O.getSupportedLocales();
+		let supported = O.getSupportedLocales();
 
 		if(supported.length === 0) {
 			return this.getLang();
 		}
-		var locale = supported[0];
+		let locale = supported[0];
 
 		if (locale.indexOf('_') !== -1) {
 			return locale.substring(0, locale.indexOf('_'));
@@ -111,7 +111,7 @@
 	* @param {string=} value Value
 	*
 	*/
-	var setLocalization = function (lang, key, value) {
+	let setLocalization = function (lang, key, value) {
 		if (lang === null || lang === undefined) {
 			throw new TypeError(
 				'setLocalization(): Missing lang'
@@ -136,7 +136,7 @@
 	* @return {string}     Localized value for key
 	*/
 	O.getLocalization = function (key, lang, fallbackToDefault) {
-		var l = lang || OskariLang;
+		let l = lang || OskariLang;
 		if (key === null || key === undefined) {
 			throw new TypeError(
 				'getLocalization(): Missing key'
@@ -148,7 +148,7 @@
 		if(localizations[l] && localizations[l][key]) {
 			return localizations[l][key];
 		} else {
-			var defaultLang = O.getDefaultLanguage();
+			let defaultLang = O.getDefaultLanguage();
 			if (fallbackToDefault && localizations[defaultLang] && localizations[defaultLang][key]) {
 				return localizations[defaultLang][key];
 			} else {
@@ -164,7 +164,7 @@
 	*
 	*/
 	O.registerLocalization = function (props, override) {
-		var p,
+		let p,
 		pp,
 		loc;
 
@@ -225,7 +225,7 @@
 	// ------------------------------------------------
 	// Decimal separators
 	// ------------------------------------------------
-	var decimalSeparator;
+	let decimalSeparator;
 
 	/**
 	* @public @method setDecimalSeparator
@@ -258,12 +258,12 @@
 		if (!lang) {
 			lang = Oskari.getLang();
 		}
-		var value = locale[lang];
+		let value = locale[lang];
 		if(!value) {
 			value = locale[Oskari.getDefaultLanguage()];
 		}
 		if(!value) {
-			for(var key in locale) {
+			for(let key in locale) {
 				if(locale[key]) {
 					// any locale will do at this point
 					return locale[key];

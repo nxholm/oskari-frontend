@@ -4,9 +4,9 @@
  * ***********************************************************************************************
  */
 (function(o) {
-	var log = o.log('Sandbox.deprecated');
+	let log = o.log('Sandbox.deprecated');
 
-    var extraInfo = {
+    let extraInfo = {
     	addRequestHandler : "Use Sandbox.requestHandler(requestName, handlerInstance) instead.",
     	removeRequestHandler : "Use Sandbox.requestHandler(requestName, null) instead.",
     	isCtrlKeyDown : "It works on Openlayers 2 only.",
@@ -19,8 +19,8 @@
 		getUser : "Use Oskari.user() instead"
     };
     // Warn 2 times before falling silent
-    var warnMessagesSent = {};
-    var warn = function(name) {
+    let warnMessagesSent = {};
+    let warn = function(name) {
         if(!warnMessagesSent[name]) {
             warnMessagesSent[name] = 0;
         }

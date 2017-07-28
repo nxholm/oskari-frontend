@@ -10,11 +10,11 @@
     // already created on, don't run again
     return;
   }
-  var log = Oskari.log('Messages');
-  var clazzes = {};
+  let log = Oskari.log('Messages');
+  let clazzes = {};
 
   function getClazzByNameAndType(name, type) {
-    var typeNames = clazzes[type];
+    let typeNames = clazzes[type];
     if(!typeNames) {
       clazzes[type] = {};
       typeNames = clazzes[type];
@@ -23,13 +23,13 @@
       return typeNames[name];
     }
     log.debug('Updating metadata for ' + type);
-    var allKnownClassesOfType = Oskari.clazz.protocol(type);
-    for (var clazzName in allKnownClassesOfType) {
+    let allKnownClassesOfType = Oskari.clazz.protocol(type);
+    for (let clazzName in allKnownClassesOfType) {
       if (!allKnownClassesOfType.hasOwnProperty(clazzName)) {
         continue;
       }
-      var clazzDefinition = allKnownClassesOfType[clazzName];
-      var requestName = clazzDefinition._class.prototype.getName();
+      let clazzDefinition = allKnownClassesOfType[clazzName];
+      let requestName = clazzDefinition._class.prototype.getName();
       typeNames[requestName] = clazzName;
     }
     log.debug('Finished updating metadata for ' + type);
@@ -37,7 +37,7 @@
   }
 
   o.requestBuilder = function(name) {
-    var qname = getClazzByNameAndType(name, 'Oskari.mapframework.request.Request');
+    let qname = getClazzByNameAndType(name, 'Oskari.mapframework.request.Request');
     if (!qname) {
       log.warn('No builder found for', name);
       return undefined;
@@ -46,7 +46,7 @@
   };
 
   o.eventBuilder = function(name) {
-    var qname = getClazzByNameAndType(name, 'Oskari.mapframework.event.Event');
+    let qname = getClazzByNameAndType(name, 'Oskari.mapframework.event.Event');
     if (!qname) {
       log.warn('No builder found for', name);
       return undefined;

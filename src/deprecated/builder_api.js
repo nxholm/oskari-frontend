@@ -4,14 +4,14 @@
         return;
     }
 
-    var _baseClassFor = {
+    let _baseClassFor = {
         extension: 'Oskari.userinterface.extension.EnhancedExtension',
         bundle: 'Oskari.mapframework.bundle.extension.ExtensionBundle',
         tile: 'Oskari.userinterface.extension.EnhancedTile',
         flyout: 'Oskari.userinterface.extension.EnhancedFlyout',
         view: 'Oskari.userinterface.extension.EnhancedView'
     };
-    var bundleInstances = {};
+    let bundleInstances = {};
     /**
      * @public @method cls
      * Entry point to new class API.
@@ -25,7 +25,7 @@
      * @return {Object}               Class instance
      */
     o.cls = function (className, constructor, proto, metas) {
-        var classInfo;
+        let classInfo;
 
         if (!className) {
             className = [
@@ -68,7 +68,7 @@
      * @return
      */
     o.eventCls = function (eventName, constructor, proto) {
-        var className,
+        let className,
             rv;
 
         if (eventName === null || eventName === undefined) {
@@ -105,7 +105,7 @@
      * @return {Object}
      */
     o.requestCls = function (requestName, constructor, proto) {
-        var className,
+        let className,
             rv;
 
         if (requestName === null || requestName === undefined) {
@@ -157,7 +157,7 @@
      * @return {Object}           Bundle instance
      */
     o.bundleCls = function (bundleId, className) {
-        var rv;
+        let rv;
 
         if (className === null || className === undefined) {
             throw new TypeError('bundleCls(): Missing className');
@@ -187,7 +187,7 @@
 
         // FIXME instanceId isn't used for anything?
         rv.start = function (instanceId) {
-            var bid = this.___bundleIdentifier,
+            let bid = this.___bundleIdentifier,
                 bundle,
                 bundleInstance,
                 configProps,
@@ -213,7 +213,7 @@
             return bundleInstance;
         };
         rv.stop = function () {
-            var bundleInstance = bundleInstances[this.___bundleIdentifier];
+            let bundleInstance = bundleInstances[this.___bundleIdentifier];
 
             return bundleInstance.stop();
         };

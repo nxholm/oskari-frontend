@@ -3,7 +3,7 @@
   /**
   * Registers O2ClassSystem as global so Oskari can build on it
   */
-  var O2ClassSystem = function () {
+  let O2ClassSystem = function () {
     this.packages = {};
     this.protocols = {};
     this.inheritance = {};
@@ -44,7 +44,7 @@
     * @return {Object}             Package definition
     */
     _getPackageDefinition: function (packageName) {
-      var packageDefinition = this.packages[packageName];
+      let packageDefinition = this.packages[packageName];
 
       if (!packageDefinition) {
         packageDefinition = {};
@@ -61,7 +61,7 @@
     * @return {Object}           ClassQName
     */
     _getClassQName: function (className) {
-      var parts = className.split('.');
+      let parts = className.split('.');
 
       return {
         basePkg: parts[0],
@@ -78,7 +78,7 @@
     * @return {Object}           ClassInfo
     */
     _getClassInfo: function (className) {
-      var classInfo = this.classcache[className],
+      let classInfo = this.classcache[className],
       classQName = this._getClassQName(className),
       packageDefinition;
 
@@ -98,7 +98,7 @@
     *
     */
     _cloneProperties: function (from, to) {
-      var i,
+      let i,
       propertyName,
       propertyValue,
       toArray = Array.isArray(to) ? to : [to];
@@ -120,7 +120,7 @@
     * @return {function()} Empty function with an empty prototype
     */
     _createEmptyClassDefinition: function () {
-      var ret = function () {
+      let ret = function () {
         return undefined;
       };
       ret.prototype = {};
@@ -136,7 +136,7 @@
     * @return {Object}           Class metadata
     */
     getMetadata: function (className) {
-      var classInfo;
+      let classInfo;
       if (className === null || className === undefined) {
         throw new TypeError('metadata(): Missing className');
       }
@@ -159,7 +159,7 @@
     *
     */
     _updateMetadata: function (basePkg, pkg, sp, classInfo, classMeta) {
-      var protocols,
+      let protocols,
       p,
       pt,
       className;
@@ -190,7 +190,7 @@
     * @return
     */
     _super: function (supCat, supMet) {
-      var me = this;
+      let me = this;
 
       return function () {
         return me._._superCategory[supCat][supMet].apply(me, arguments);
@@ -210,7 +210,7 @@
     * @return {Object}                    ClassInfo
     */
     define: function (className, classConstructor, prototype, metadata) {
-      var classDefinition,
+      let classDefinition,
       classQName,
       composition,
       packageDefinition,
@@ -306,7 +306,7 @@
     * @return {Object}              ClassInfo
     */
     category: function (className, categoryName, prototype) {
-      var classDefinition,
+      let classDefinition,
       classInfo,
       classQName,
       composition,
@@ -359,7 +359,7 @@
     * @return {Object}             ClassInfo
     */
     lookup: function (className, constructor) {
-      var classDefinition,
+      let classDefinition,
       classQName,
       composition,
       packageDefinition,
@@ -402,7 +402,7 @@
     * @return {Object}                SubClass
     */
     extend: function (subClassName, superClassName) {
-      var superClass,
+      let superClass,
       subClass;
 
       if (subClassName === null || subClassName === undefined) {
@@ -435,7 +435,7 @@
     * @return {Object}           ClassInfo
     */
     _pushDown: function (classInfo) {
-      var subName,
+      let subName,
       pdefsub;
 
       if (classInfo === null || classInfo === undefined) {
@@ -466,7 +466,7 @@
     * @return {Object}           ClassInfo
     */
     _pullDown: function (classInfo) {
-      var i,
+      let i,
       category,
       clazz,
       classHierarchy,
@@ -537,7 +537,7 @@
     * @return {Object}           Class instance
     */
     create: function (className) {
-      var classInfo,
+      let classInfo,
       classInstance,
       constructors,
       i,
@@ -568,13 +568,13 @@
           if (constructors[i] === null || constructors[i] === undefined) {
             throw new Error('Class ' + className + ' is missing super constructor ' + (i + 1) + '/' + constructors.length);
           }
-          var returned = constructors[i].apply(classInstance, instanceArguments);
+          let returned = constructors[i].apply(classInstance, instanceArguments);
           if(returned) {
             classInstance = returned;
           }
         }
       } else {
-        var returned = classInfo._constructor.apply(classInstance, instanceArguments);
+        let returned = classInfo._constructor.apply(classInstance, instanceArguments);
         if(returned) {
           classInstance = returned;
         }
@@ -591,7 +591,7 @@
     * @return {Object}                   Class instance
     */
     createWithClassInfo: function (classInfo, instanceArguments) {
-      var classInstance,
+      let classInstance,
       constructors,
       i;
 
@@ -629,7 +629,7 @@
       * @return {function}           Class builder
       */
       builder: function (className) {
-        var classInfo;
+        let classInfo;
 
         if (className === null || className === undefined) {
           throw new TypeError('builder(): Missing className');
@@ -662,7 +662,7 @@
           return classInfo._builder;
         }
         classInfo._builder = function () {
-          var classInstance = new classInfo._class(),
+          let classInstance = new classInfo._class(),
           constructors = classInfo._constructors,
           i,
           instanceArguments = arguments;

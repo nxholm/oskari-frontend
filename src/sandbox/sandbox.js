@@ -7,11 +7,11 @@
 * the Oskari Module protocol.
 */
 (function (Oskari) {
-  var ajaxUrl;
-  var log;
-  var services = {};
-  var requestHandlers = {};
-  var isDebugMode = false;
+  let ajaxUrl;
+  let log;
+  let services = {};
+  let requestHandlers = {};
+  let isDebugMode = false;
 
   Oskari.clazz.define('Oskari.Sandbox',
 
@@ -22,13 +22,13 @@
   * @param {String} name optional name for non-default sandbox.
   */
   function (name) {
-    var postFix = '';
+    let postFix = '';
     if (name !== 'sandbox') {
       postFix = '.' + name;
     }
     log = Oskari.log('Sandbox' + postFix);
 
-    var me = this;
+    let me = this;
     /*
     * All registered listeners in map key: event name value:
     * array of modules who are interested in this type of event
@@ -178,7 +178,7 @@
     *            module
     */
     unregister: function (module) {
-      var me = this,
+      let me = this,
       remainingModules = [],
       m;
       for (m = 0; m < me._modules.length; m += 1) {
@@ -201,7 +201,7 @@
     */
     registerForEventByName: function (module, eventName) {
       log.debug('#*#*#* Sandbox is registering module \'' + module.getName() + '\' to event \'' + eventName + '\'');
-      var oldListeners = this._listeners[eventName];
+      let oldListeners = this._listeners[eventName];
       if (oldListeners === null || oldListeners === undefined) {
         oldListeners = [];
         this._listeners[eventName] = oldListeners;
@@ -220,7 +220,7 @@
     */
     unregisterFromEventByName: function (module, eventName) {
       log.debug('Sandbox is unregistering module \'' + module.getName() + '\' from event \'' + eventName + '\'');
-      var oldListeners = this._listeners[eventName],
+      let oldListeners = this._listeners[eventName],
       deleteIndex = -1,
       d;
       if (oldListeners === null || oldListeners === undefined) {
@@ -255,7 +255,7 @@
     *            request to be performed
     */
     request: function (creator, request) {
-      var creatorName = null,
+      let creatorName = null,
       creatorComponent,
       rv = null;
 
@@ -293,9 +293,9 @@
     * @return {Boolean} Returns true, if request was handled, false otherwise
     */
     processRequest: function (request) {
-      var requestName = request.getName();
+      let requestName = request.getName();
 
-      var handlerClsInstance = this.requestHandler(requestName);
+      let handlerClsInstance = this.requestHandler(requestName);
       if (!handlerClsInstance || typeof handlerClsInstance.handleRequest !== 'function') {
         log.warn('No handler for request', requestName);
         return;
@@ -322,7 +322,7 @@
       log.debug(
         '#!#!#! --------------> requestByName ' + requestName
       );
-      var requestBuilder = Oskari.requestBuilder(requestName),
+      let requestBuilder = Oskari.requestBuilder(requestName),
       request = requestBuilder.apply(this, requestArgs || []);
       return this.request(creator, request);
     },
@@ -350,14 +350,14 @@
     * @param {Array} requestArgs (optional)
     */
     postRequestByName: function (requestName, requestArgs, syncDoNotUseWillBeRemoved) {
-      var me = this,
+      let me = this,
       requestBuilder = Oskari.requestBuilder(requestName);
       if (!requestBuilder || !this.hasHandler(requestName)) {
         log.warn('Trying to post request', requestName, 'that is undefined or missing a handler. Skipping!');
         return;
       }
-      var handleReg = function () {
-        var request = requestBuilder.apply(me, requestArgs || []),
+      let handleReg = function () {
+        let request = requestBuilder.apply(me, requestArgs || []),
         creatorComponent = me.postMasterComponent,
         rv = null;
 
@@ -398,7 +398,7 @@
     * @return {Oskari.mapframework.module.Module[]} modules listening to the event
     */
     _findModulesInterestedIn: function (event) {
-      var eventName = event.getName(),
+      let eventName = event.getName(),
       currentListeners = this._listeners[eventName];
       if (!currentListeners) {
         return [];
@@ -415,7 +415,7 @@
     * @param {Boolean} retainEvent true to not send event but only print debug which modules are listening, usually left undefined (optional)
     */
     notifyAll: function (event, retainEvent) {
-      var eventName;
+      let eventName;
       if (!retainEvent) {
         eventName = event.getName();
         log.debug(
@@ -423,7 +423,7 @@
         );
       }
 
-      var modules = this._findModulesInterestedIn(event),
+      let modules = this._findModulesInterestedIn(event),
       i,
       module;
       if (!retainEvent) {
@@ -481,7 +481,7 @@
     * @return {Object} object with properties width and height as the window size in pixels
     */
     getBrowserWindowSize: function () {
-      var width = jQuery(window).width(),
+      let width = jQuery(window).width(),
       size = {};
       size.height = jQuery(window).height();
       size.width = width;
@@ -527,7 +527,7 @@
       if (!this.debug()) {
         return;
       }
-      var reqLog = {
+      let reqLog = {
         from: creator,
         reqName: req.getName()
       };
@@ -569,7 +569,7 @@
         throw 'Events Looped?';
       }
 
-      var evtLog = {
+      let evtLog = {
         from: creator,
         to: target.getName(),
         evtName: evt.getName()
@@ -604,7 +604,7 @@
     * @param {Oskari.mapframework.request.Request/Oskari.mapframework.event.Event} req - request that was sent
     */
     _pushRequestAndEventGather: function (name, request) {
-      var module = {};
+      let module = {};
       module.name = name;
       module.request = request;
       this.requestAndEventGather.push(module);
@@ -623,7 +623,7 @@
     * Uses www.websequencediagrams.com to create the diagram.
     */
     popUpSeqDiagram: function () {
-      var seq_html =
+      let seq_html =
       '<html>' +
       '  <head></head>' +
       '  <body>' +
@@ -649,10 +649,10 @@
         '(function()' +
         '{' +
         '// The script location' +
-        'var ScriptSrc = (function() {' +
-        'var src;' +
-        'var i;' +
-        'var scripts = document.getElementsByTagName("script"),' +
+        'let ScriptSrc = (function() {' +
+        'let src;' +
+        'let i;' +
+        'let scripts = document.getElementsByTagName("script"),' +
         'script = scripts[scripts.length - 1];' +
         'if (script.getAttribute.length !== undefined) {' +
         'src = script.src;' +
@@ -664,8 +664,8 @@
         'function GetScriptHostname()' +
         '{' +
         '// Returns script protocol, hostname and port.' +
-        'var regex = /(https?:\/\/[^\/]+)/;' +
-        'var m = regex.exec(ScriptSrc);' +
+        'let regex = /(https?:\/\/[^\/]+)/;' +
+        'let m = regex.exec(ScriptSrc);' +
         'if ( m && m.length > 1 ) {' +
         'return m[1];' +
         '} else {' +
@@ -700,8 +700,8 @@
         '}' +
         'function encodeBase64(str)' +
         '{' +
-        'var writer = new BitWriter();' +
-        'for (var n = 0; n < str.length; n++) {' +
+        'let writer = new BitWriter();' +
+        'for (let n = 0; n < str.length; n++) {' +
         'writer.addBits( str.charCodeAt( n ), 8 );' +
         '}' +
         'writer.finish();' +
@@ -710,9 +710,9 @@
         'function encodeUtf8(string) {' +
         '// fronm http://www.webtoolkit.info/' +
         'string = string.replace(/\r\n/g,"\n");' +
-        'var utftext = "";' +
-        'for (var n = 0; n < string.length; n++) {' +
-        'var c = string.charCodeAt(n);' +
+        'let utftext = "";' +
+        'for (let n = 0; n < string.length; n++) {' +
+        'let c = string.charCodeAt(n);' +
         'if (c < 128) {' +
         'utftext += String.fromCharCode(c);' +
         '}' +
@@ -745,14 +745,14 @@
         '}' +
         'function encodeLz77( input )' +
         '{' +
-        'var MinStringLength = 4;' +
-        'var output = "";' +
-        'var pos = 0;' +
-        'var hash = {};' +
+        'let MinStringLength = 4;' +
+        'let output = "";' +
+        'let pos = 0;' +
+        'let hash = {};' +
         '// set last pos to just after the last chunk.' +
-        'var lastPos = input.length - MinStringLength;' +
-        'for ( var i = MinStringLength; i < input.length; i++ ) {' +
-        'var subs = input.substr(i-MinStringLength, MinStringLength);' +
+        'let lastPos = input.length - MinStringLength;' +
+        'for ( let i = MinStringLength; i < input.length; i++ ) {' +
+        'let subs = input.substr(i-MinStringLength, MinStringLength);' +
         'if ( hash[subs] === undefined ) {' +
         'hash[subs] = [];' +
         '}' +
@@ -763,28 +763,28 @@
         'while (pos < lastPos) {' +
         '// search start is the current position minus the window size, capped' +
         '// at the beginning of the string.' +
-        'var matchLength = MinStringLength;' +
-        'var foundMatch = false;' +
-        'var bestMatch = {distance: 0, length: 0};' +
-        'var prefix = input.substr(pos, MinStringLength);' +
-        'var matches = hash[prefix];' +
+        'let matchLength = MinStringLength;' +
+        'let foundMatch = false;' +
+        'let bestMatch = {distance: 0, length: 0};' +
+        'let prefix = input.substr(pos, MinStringLength);' +
+        'let matches = hash[prefix];' +
         '// loop until the end of the matched region reaches the current' +
         '// position.' +
         '//while ((searchStart + matchLength) < pos) {' +
         'if ( matches !== undefined ) {' +
-        'for ( var i = 0; i < matches.length; i++ ) {' +
-        'var searchStart = matches[i];' +
+        'for ( let i = 0; i < matches.length; i++ ) {' +
+        'let searchStart = matches[i];' +
         'if ( searchStart + matchLength >= pos ) {' +
         'break;' +
         '}' +
         'while( searchStart + matchLength < pos ) {' +
         '// check if string matches.' +
-        'var isValidMatch = (' +
+        'let isValidMatch = (' +
         '(input.substr(searchStart, matchLength) == input.substr(pos, matchLength))' +
         ');' +
         'if (isValidMatch) {' +
         '// we found at least one match. try for a larger one.' +
-        'var realMatchLength = matchLength;' +
+        'let realMatchLength = matchLength;' +
         'matchLength++;' +
         'if (foundMatch && (realMatchLength > bestMatch.length)) {' +
         'bestMatch.distance = pos - searchStart - realMatchLength;' +
@@ -816,9 +816,9 @@
         '}' +
         'function getText( node )' +
         '{' +
-        'var text = "";' +
-        'for( var i = 0; i < node.childNodes.length; i++ ) {' +
-        'var child = node.childNodes[i];' +
+        'let text = "";' +
+        'for( let i = 0; i < node.childNodes.length; i++ ) {' +
+        'let child = node.childNodes[i];' +
         'if ( child.nodeType == 3 ) {' +
         'text += child.data;' +
         '} else {' +
@@ -828,22 +828,22 @@
         'return text;' +
         '}' +
         'function process(divs) {' +
-        'var hostname = GetScriptHostname();' +
-        'for ( var i = 0; i < divs.length; i++ ) {' +
+        'let hostname = GetScriptHostname();' +
+        'for ( let i = 0; i < divs.length; i++ ) {' +
         'if ( divs[i].className == "wsd" && !divs[i].wsd_processed ) {' +
         'divs[i].wsd_processed = true;' +
-        'var style = "";' +
+        'let style = "";' +
         'if ( divs[i].attributes["wsd_style"] ) {' +
         'style = "&s=" + divs[i].attributes["wsd_style"].value;' +
         '}' +
-        'var text = encodeBase64( encodeLz77( encodeUtf8( getText( divs[i] ) ) ) );' +
-        'var str = hostname + "/cgi-bin/cdraw?" +' +
+        'let text = encodeBase64( encodeLz77( encodeUtf8( getText( divs[i] ) ) ) );' +
+        'let str = hostname + "/cgi-bin/cdraw?" +' +
         '"lz=" + text + style;' +
         'if ( true || str.length < 2048 ) {' +
-        'for( var j = divs[i].childNodes.length-1; j >= 0; j-- ) {' +
+        'for( let j = divs[i].childNodes.length-1; j >= 0; j-- ) {' +
         'divs[i].removeChild( divs[i].childNodes[j] );' +
         '}' +
-        'var img = document.createElement("img");' +
+        'let img = document.createElement("img");' +
         'img.setAttribute("src", str);' +
         'divs[i].appendChild( img );' +
         '} else {' +
@@ -871,7 +871,7 @@
     * @param lang Optional language
     */
     getLocalizedProperty: function (property, lang) {
-      var ret,
+      let ret,
       supportedLocales,
       i,
       language = lang || Oskari.getLang();
@@ -911,7 +911,7 @@
       if (!baseUrl) {
         return null;
       }
-      var url = this.__constructUrl(baseUrl);
+      let url = this.__constructUrl(baseUrl);
       if (!!prepQueryString) {
         url = this.__prepareQueryString(url);
       }
@@ -933,7 +933,7 @@
       if (baseUrl.indexOf('//') === 0) {
         return window.location.protocol + baseUrl;
       }
-      var serverUrl = window.location.protocol + '//'
+      let serverUrl = window.location.protocol + '//'
       + window.location.host;
       // starts with / -> fill in protocol + host including port
       if (baseUrl.indexOf('/') === 0) {
@@ -956,7 +956,7 @@
       if (url.indexOf('?') === -1) {
         url = url + '?';
       }
-      var lastChar = url.charAt(url.length - 1);
+      let lastChar = url.charAt(url.length - 1);
       if (lastChar !== '&' && lastChar !== '?') {
         url = url + '&';
       }

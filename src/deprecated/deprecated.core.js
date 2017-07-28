@@ -1,9 +1,9 @@
 (function(o){
-	var log = Oskari.log('Oskari.deprecated');
+	let log = Oskari.log('Oskari.deprecated');
 
 	// Warn 2 times before falling silent
-	var warnMessagesSent = {};
-	var warn = function(name) {
+	let warnMessagesSent = {};
+	let warn = function(name) {
 		if(!warnMessagesSent[name]) {
 			warnMessagesSent[name] = 0;
 		}
@@ -13,12 +13,12 @@
 		}
 	};
 
-	var mode = 'default';
-    var domMgr;
-    var dollarStore = o.createStore();
-    var _ctrlKeyDown = false;
-    var isDebug = false;
-	var funcs = {
+	let mode = 'default';
+    let domMgr;
+    let dollarStore = o.createStore();
+    let _ctrlKeyDown = false;
+    let isDebug = false;
+	let funcs = {
         /**
          * @public @method Oskari.setDebugMode
          * @param {boolean} d Debug mode on/off
@@ -84,14 +84,14 @@
             _ctrlKeyDown = !!isDown;
         }
 	};
-	var attachWarning = function(name) {
+	let attachWarning = function(name) {
 		return function() {
 			warn(name);
 			return funcs[name].apply(o, arguments);
 		};
 	}
 	// attach to Oskari with a warning message wrapping
-	for(var key in funcs) {
+	for(let key in funcs) {
 		o[key] = attachWarning(key);
 	}
 }(Oskari));

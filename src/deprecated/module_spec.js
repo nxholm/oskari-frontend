@@ -1,6 +1,6 @@
 
 (function(o){
-	var cs = o.clazz;
+	let cs = o.clazz;
 
     /* @class Oskari.ModuleSpec
      * Helper class instance of which is returned from Oskari 2.0 api
@@ -32,7 +32,7 @@
          * @return {Oskari.ModuleSpec}              this
          */
         category: function (prototype, categoryName) {
-            var classInfo = cs.category(
+            let classInfo = cs.category(
                 this.className,
                 categoryName ||
                     (['__', o.seq.nextVal('Category')].join('_')),
@@ -52,7 +52,7 @@
          * @return {Oskari.ModuleSpec}              this
          */
         methods: function (prototype, categoryName) {
-            var classInfo = cs.category(
+            let classInfo = cs.category(
                 this.className,
                 categoryName ||
                     (['__', o.seq.nextVal('Category')].join('_')),
@@ -73,7 +73,7 @@
          * @return {Oskari.ModuleSpec}       this
          */
         extend: function (clazz) {
-            var classInfo;
+            let classInfo;
 
             if (clazz === null || clazz === undefined) {
                 throw new TypeError('extend(): Missing clazz');
@@ -129,11 +129,11 @@
          * @return {Oskari.ModuleSpec}        this
          */
         events: function (events) {
-            var orgmodspec = this;
+            let orgmodspec = this;
             orgmodspec.category({
                 eventHandlers: events,
                 onEvent: function (event) {
-                    var handler = this.eventHandlers[event.getName()];
+                    let handler = this.eventHandlers[event.getName()];
                     if (!handler) {
                         return;
                     }
@@ -152,11 +152,11 @@
          * @return {Oskari.ModuleSpec}          this
          */
         requests: function (requests) {
-            var orgmodspec = this;
+            let orgmodspec = this;
             orgmodspec.category({
                 requestHandlers: requests,
                 onRequest: function (request) {
-                    var handler = this.requestHandlers[request.getName()];
+                    let handler = this.requestHandlers[request.getName()];
                     return handler ? handler.apply(this, [request]) : undefined;
                 }
             }, '___requests');

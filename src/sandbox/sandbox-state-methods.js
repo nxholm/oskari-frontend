@@ -49,7 +49,7 @@ Oskari.clazz.category('Oskari.Sandbox', 'state-methods', {
   * the moment.
   */
   getCurrentState: function () {
-    var state = {},
+    let state = {},
     components = this.getStatefulComponents(),
     bundleid;
     for (bundleid in components) {
@@ -82,7 +82,7 @@ Oskari.clazz.category('Oskari.Sandbox', 'state-methods', {
   * @param  {Object} initialConf state configuration object including data for all bundles
   */
   useState: function (initialConf) {
-    var newStateConfig = jQuery.extend(true, {}, initialConf),
+    let newStateConfig = jQuery.extend(true, {}, initialConf),
     components = this.getStatefulComponents(),
     bundleState,
     bundle,
@@ -111,16 +111,16 @@ Oskari.clazz.category('Oskari.Sandbox', 'state-methods', {
     if (typeof minutes !== 'number' || typeof callback !== 'function') {
       return;
     }
-    var milliSeconds = 60 * 1000 * minutes;
+    let milliSeconds = 60 * 1000 * minutes;
     setTimeout(function () {
       callback();
     }, milliSeconds);
   },
   extendSession: function (errorCallback) {
-    var url = this.getAjaxUrl() + 'action_route=GetCurrentUser',
+    let url = this.getAjaxUrl() + 'action_route=GetCurrentUser',
     currentUuid = Oskari.user().getUuid(),
     successCallback = function (res, textStatus, jqXHR) {
-      var resUuid = jqXHR.getResponseHeader('currentUserUid');
+      let resUuid = jqXHR.getResponseHeader('currentUserUid');
       if (resUuid !== currentUuid) {
         // the uuid in response was not what we expected
         errorCallback();

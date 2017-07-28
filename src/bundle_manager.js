@@ -4,21 +4,21 @@
     // can't add loader if no Oskari ref
     return;
   }
-  var log = Oskari.log('Oskari.bundle_manager');
+  let log = Oskari.log('Oskari.bundle_manager');
   /**
   * singleton instance of the class system
   */
-  var class_singleton = o.clazz;
-  var cs = class_singleton;
+  let class_singleton = o.clazz;
+  let cs = class_singleton;
 
   /* legacy Bundle_manager */
 
   /**
   * @singleton @class Oskari.Bundle_manager
   */
-  var Bundle_manager = function () {
+  let Bundle_manager = function () {
     this.clazz = o.clazz;
-    var me = this;
+    let me = this;
     me.serial = 0;
     me.bundleDefinitions = {};
     me.sources = {};
@@ -55,7 +55,7 @@
     * @private @method _purge
     */
     _purge: function () {
-      var p,
+      let p,
       me = this;
 
       for (p in me.sources) {
@@ -88,7 +88,7 @@
     *
     */
     _install: function (biid, bundleDefinition, srcFiles, bundleMetadata) {
-      var me = this,
+      let me = this,
       defState = me.bundleDefinitionStates[biid];
 
       if (defState) {
@@ -120,7 +120,7 @@
     *
     */
     installBundleClass: function (biid, className) {
-      var clazz = Oskari.clazz.create(className);
+      let clazz = Oskari.clazz.create(className);
       if(clazz) {
         // Oskari.bundle is the new registry for requirejs loader
         Oskari.bundle(biid, {
@@ -139,7 +139,7 @@
     *
     */
     installBundleClassInfo: function (biid, classInfo) {
-      var bundleDefinition = cs.getBuilderFromClassInfo(classInfo),
+      let bundleDefinition = cs.getBuilderFromClassInfo(classInfo),
       bundleMetadata = classInfo._metadata,
       sourceFiles = {};
 
@@ -172,7 +172,7 @@
     * @return {Object}      Bundle
     */
     createBundle: function (biid, bid) {
-      var bundle,
+      let bundle,
       bundleDefinition,
       me = this,
       bundleDefinitionState;
@@ -224,7 +224,7 @@
       // creates a bundle_instance
       // any configuration and setup IS BUNDLE / BUNDLE INSTANCE specific
       // create / config / start / process / stop / destroy ...
-      var me = this,
+      let me = this,
       bundle,
       bundleInstance,
       bundleInstanceId;
@@ -275,7 +275,7 @@
       * @return
       */
       _destroyInstance: function (biid) {
-        var bundleInstance;
+        let bundleInstance;
 
         if (biid === null || biid === undefined) {
           throw new TypeError('_destroyInstance(): Missing biid');

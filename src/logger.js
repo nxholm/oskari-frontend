@@ -1,6 +1,6 @@
 /**
 * Provides logger functionality for Oskari
-* var log = Oskari.log('MyLog');
+* let log = Oskari.log('MyLog');
 * log.enableDebug(true);
 * log.debug('my debug message');
 * log.warn('my warn message');
@@ -8,12 +8,12 @@
 */
 (function() {
 
-  var hasConsole = window.console;
+  let hasConsole = window.console;
   // Set to true to enable timestamps in log messages
-  var inclTimestamp = false;
+  let inclTimestamp = false;
   /** Utility methods for logger */
-  var _logMsg = function (args) {
-    var level = args.shift();
+  let _logMsg = function (args) {
+    let level = args.shift();
     if (!hasConsole ||
       !window.console[level] ||
       !window.console[level].apply) {
@@ -23,22 +23,22 @@
       window.console[level].apply(window.console, args);
     };
 
-    var _unshift = function(addToFirst, list) {
-      var args = Array.prototype.slice.call(list);
+    let _unshift = function(addToFirst, list) {
+      let args = Array.prototype.slice.call(list);
       args.unshift(addToFirst);
       return args;
     }
-    var ts = function() {
+    let ts = function() {
       if(!inclTimestamp) {
         return '';
       }
-      var date = new Date();
+      let date = new Date();
       return date.toLocaleTimeString() + '.' + date.getUTCMilliseconds() + ' ';
     }
-    var _doLogging = function(logName, logLevel, logMessages, includeCaller, callee) {
-      var header = ts() + logName + ':';
+    let _doLogging = function(logName, logLevel, logMessages, includeCaller, callee) {
+      let header = ts() + logName + ':';
       // prefix messages with logName
-      var newArgs = _unshift(header, logMessages);
+      let newArgs = _unshift(header, logMessages);
       // prefix logName + messages with logLevel
       newArgs = _unshift(logLevel, newArgs);
       // attach caller info if available and requested
@@ -52,7 +52,7 @@
     * Logger definition
     * @param {String} name logger name
     */
-    var Logger = function(name, enableDebug, inclCaller) {
+    let Logger = function(name, enableDebug, inclCaller) {
       this.name = name || "Logger";
       this.isDebug = !!enableDebug;
       this.includeCaller = !!inclCaller;
@@ -86,14 +86,14 @@
     };
 
     // keep track of existing loggers
-    var loggers = {};
+    let loggers = {};
 
     Oskari.log = function(logName) {
       logName = logName || "Oskari";
       if(loggers[logName]) {
         return loggers[logName];
       }
-      var log = new Logger(logName);
+      let log = new Logger(logName);
       loggers[logName] = log;
       return log;
     };

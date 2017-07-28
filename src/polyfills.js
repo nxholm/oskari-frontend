@@ -1,11 +1,11 @@
 if (!String.prototype.endsWith) {
   String.prototype.endsWith = function(searchString, position) {
-      var subjectString = this.toString();
+      let subjectString = this.toString();
       if (typeof position !== 'number' || !isFinite(position) || Math.floor(position) !== position || position > subjectString.length) {
         position = subjectString.length;
       }
       position -= searchString.length;
-      var lastIndex = subjectString.indexOf(searchString, position);
+      let lastIndex = subjectString.indexOf(searchString, position);
       return lastIndex !== -1 && lastIndex === position;
   };
 }
@@ -14,7 +14,7 @@ if (!String.prototype.endsWith) {
 // http://stackoverflow.com/questions/2419749/get-selected-elements-outer-html
 // Elements outerHtml property only works on IE and chrome
 jQuery.fn.outerHTML = function (arg) {
-    var ret;
+    let ret;
 
     // If no items in the collection, return
     if (!this.length) {
@@ -26,7 +26,7 @@ jQuery.fn.outerHTML = function (arg) {
     }
     // Setter overload
     jQuery.each(this, function (i, el) {
-        var fnRet,
+        let fnRet,
             pass = el,
             inOrOut = el.outerHTML ? 'outerHTML' : 'innerHTML';
 
@@ -59,7 +59,7 @@ jQuery.fn.outerHTML = function (arg) {
   } catch(err) {
     function CustomEvent ( event, params ) {
       params = params || { bubbles: false, cancelable: false, detail: undefined };
-      var evt = document.createEvent( 'CustomEvent' );
+      let evt = document.createEvent( 'CustomEvent' );
       evt.initCustomEvent( event, params.bubbles, params.cancelable, params.detail );
       return evt;
      }

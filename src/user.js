@@ -4,7 +4,7 @@
         // can't add functions if no Oskari ref
         return;
     }
-    var user = null;
+    let user = null;
     Oskari.user = function(data) {
         if(user === null) {
             // always setup user if null, even without data
@@ -170,8 +170,8 @@
                 if(!idList || typeof idList.forEach !== 'function') {
                     return false;
                 }
-                var found = false;
-                var userRoles = this.getRoles();
+                let found = false;
+                let userRoles = this.getRoles();
                 userRoles.forEach(function(role) {
                     if(idList.indexOf(role.id) !== -1) {
                         found = true;

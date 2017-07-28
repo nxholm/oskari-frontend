@@ -3,7 +3,7 @@
 * Usage:
 *
 *     // get
-*     var bundledetails = Oskari.bundle('mybundle');
+*     let bundledetails = Oskari.bundle('mybundle');
 *     // set
 *     Oskari.bundle('mybundle', bundledetails);
 *
@@ -19,7 +19,7 @@
     // can't add bundle if no Oskari ref
     return;
   }
-  var _bundleRegistry = {};
+  let _bundleRegistry = {};
   // Add the bundle method to Oskari
   o.bundle = function (bundleId, value) {
     if (value) {
@@ -32,9 +32,9 @@
 * File loader/startupsequence processor for Oskari.
 * Usage:
 *
-*     var startupSequence = [...bundles to load/start... ];
-*     var config = { ... bundle configs ... };
-*     var loader = Oskari.loader(startupSequence, config);
+*     let startupSequence = [...bundles to load/start... ];
+*     let config = { ... bundle configs ... };
+*     let loader = Oskari.loader(startupSequence, config);
 *     loader.log.enableDebug(true); // to get additional logging
 *     loader.processSequence(function() {
 *         // application started
@@ -53,10 +53,10 @@
   if (o.loader) {
     // loader already present, but we might want another?
   }
-  var log = Oskari.log('Loader');
-  var linkFile = function (href, rel, type) {
-    var importParentElement = document.head || document.body;
-    var linkElement = document.createElement('link');
+  let log = Oskari.log('Loader');
+  let linkFile = function (href, rel, type) {
+    let importParentElement = document.head || document.body;
+    let linkElement = document.createElement('link');
     linkElement.rel = rel || 'stylesheet';
     linkElement.type = type || 'text/css';
     linkElement.href = href;
@@ -64,12 +64,12 @@
   };
 
   // http://stackoverflow.com/questions/14780350/convert-relative-path-to-absolute-using-javascript
-  var absolute = function (base, relative) {
-    var stack = base.split("/"),
+  let absolute = (base, relative) => {
+    let stack = base.split("/"),
     parts = relative.split("/");
     stack.pop(); // remove current file name (or empty string)
     // (omit if "base" is the current folder without trailing slash)
-    for (var i = 0; i < parts.length; i++) {
+    for (let i = 0; i < parts.length; i++) {
       if (parts[i] === ".") {
         continue;
       }
@@ -82,9 +82,9 @@
     return stack.join("/");
   };
 
-  var getPath = function (base, src) {
+  let getPath = (base, src) => {
     // handle case where src start with /
-    var path = src;
+    let path = src;
     // handle relative ../../ case with src
     if (src.indexOf('/') !== 0) {
       path = absolute(base, src);
@@ -97,18 +97,18 @@
   * @param  {Object[]} startupSequence sequence of bundles to load/start
   * @param  {Object}   config          configuration for bundles
   */
-  var loader = function (startupSequence, config) {
-    var sequence = [];
+  let loader = (startupSequence, config) => {
+    let sequence = [];
     if (startupSequence && typeof startupSequence.slice === 'function') {
       sequence = startupSequence.slice(0);
     } else {
       log.warn('No startupsequence given to loader or sequence is not an array');
     }
-    var appConfig = config || {};
+    let appConfig = config || {};
 
-    var globalExpose = {};
+    let globalExpose = {};
     // Listen to started bundles
-    var result = {
+    let result = {
       bundles: [],
       errors: []
     };
@@ -138,7 +138,7 @@
 * @param  {Object} sequence see above
 */
 processSequence: function (done) {
-  var me = this;
+  let me = this;
   if (sequence.length === 0) {
     // everything has been loaded
     if (typeof done === 'function') {
@@ -147,7 +147,7 @@ processSequence: function (done) {
     o.trigger('app.start', result);
     return;
   }
-  var seqToLoad = sequence.shift();
+  let seqToLoad = sequence.shift();
   if (typeof seqToLoad !== 'object') {
     // log warning: block not object
     log.warn('StartupSequence item is a ' + typeof seqToLoad + ' instead of object. Skipping');
@@ -164,7 +164,7 @@ processSequence: function (done) {
     return;
   }
 
-  var bundleToStart = seqToLoad.bundlename;
+  let bundleToStart = seqToLoad.bundlename;
   if (!bundleToStart) {
     log.warn('StartupSequence item doesn\'t contain bundlename. Skipping ', seqToLoad);
     // iterate to next
@@ -172,21 +172,21 @@ processSequence: function (done) {
     return;
   }
   // if bundleinstancename is missing, use bundlename for config key.
-  var configId = seqToLoad.bundleinstancename || bundleToStart;
-  var config = appConfig[configId] || {};
-  var bundlesToBeLoaded = seqToLoad.metadata['Import-Bundle'];
-  var paths = [];
-  var bundles = [];
-  for (var id in bundlesToBeLoaded) {
-    var value = bundlesToBeLoaded[id];
+  let configId = seqToLoad.bundleinstancename || bundleToStart;
+  let config = appConfig[configId] || {};
+  let bundlesToBeLoaded = seqToLoad.metadata['Import-Bundle'];
+  let paths = [];
+  let bundles = [];
+  for (let id in bundlesToBeLoaded) {
+    let value = bundlesToBeLoaded[id];
     if (typeof value !== 'object' ||
     typeof value.bundlePath !== 'string') {
       // log warning: bundlePath not defined
       log.warn('StartupSequence import doesn\'t contain bundlePath. Skipping! Item is ' + bundleToStart + ' import is ' + id);
       continue;
     }
-    var basepath = value.bundlePath + '/' + id;
-    var path = basepath + '/bundle.js';
+    let basepath = value.bundlePath + '/' + id;
+    let path = basepath + '/bundle.js';
     paths.push(path.split('//').join('/').substring(1));
     bundles.push({
       id: id,
@@ -203,7 +203,7 @@ processSequence: function (done) {
   // webpack will ignore require if you change require => requirejs
   import("/" + paths).then( (data, err) => {
     // if loaded undefined - find from Oskari.instalBundle register with id
-    for (var i = 0; i < arguments.length; ++i) {
+    for (let i = 0; i < arguments.length; ++i) {
       if (typeof arguments[i] !== 'undefined') {
         // this would be a bundle.js with amd support
         log.warn('Support for AMD-bundles is not yet implemented', arguments[i]);
@@ -223,11 +223,11 @@ processSequence: function (done) {
   });
 },
 startBundle: function (bundleId, config, instanceId) {
-  var bundle = Oskari.bundle(bundleId);
+  let bundle = Oskari.bundle(bundleId);
   if (!bundle) {
     throw new Error('Bundle not loaded ' + bundleId);
   }
-  var instance = bundle.clazz.create();
+  let instance = bundle.clazz.create();
   if (!instance) {
     throw new Error('Couldn\'t create an instance of bundle ' + bundleId);
   }
@@ -236,7 +236,7 @@ startBundle: function (bundleId, config, instanceId) {
     instanceId: instanceId
   }
   // quick'n'dirty property injection
-  for (var key in config) {
+  for (let key in config) {
     instance[key] = config[key];
   }
   log.debug('Starting bundle ' + bundleId);
@@ -250,11 +250,11 @@ startBundle: function (bundleId, config, instanceId) {
   }
 },
 processBundleJS: function (bundles, callback) {
-  var me = this;
-  var loading = [];
-  var done = function (id) {
+  let me = this;
+  let loading = [];
+  let done = function (id) {
     // remove id from loading array
-    var index = loading.indexOf(id);
+    let index = loading.indexOf(id);
     loading.splice(index, 1);
     // once loading is empty - call callback
     if (loading.length === 0) {
@@ -263,7 +263,7 @@ processBundleJS: function (bundles, callback) {
 
   };
   bundles.forEach(function (item) {
-    var bundle = Oskari.bundle(item.id);
+    let bundle = Oskari.bundle(item.id);
     if (!bundle.clazz || !bundle.metadata || !bundle.metadata.source) {
       return;
     }
@@ -274,7 +274,7 @@ processBundleJS: function (bundles, callback) {
   });
 },
 handleBundleLoad: function (basePath, src, callback) {
-  var files = [];
+  let files = [];
 
   // src.locales
   if (src.locales) {
@@ -285,7 +285,7 @@ handleBundleLoad: function (basePath, src, callback) {
         return;
       }
       if (file.src.endsWith('.js')) {
-        var path = getPath(basePath, file.src);
+        let path = getPath(basePath, file.src);
         files.push(path);
         if (file.expose) {
           globalExpose[path] = file.expose;
@@ -304,10 +304,10 @@ handleBundleLoad: function (basePath, src, callback) {
   // src.scripts
   if (src.scripts) {
     src.scripts.forEach(function (file) {
-      var path = getPath(basePath, file.src);
+      let path = getPath(basePath, file.src);
 
       if (file.src.endsWith('.js')) {
-        files.push(path);
+        files.push(path.substring(1));
         if (file.expose) {
           globalExpose[path] = file.expose;
         }
@@ -326,12 +326,12 @@ handleBundleLoad: function (basePath, src, callback) {
     });
   }
   // webpack will ignore require if you change require => requirejs
-  import("./"+files.substring(1)).then( (data, err) => {
+  import("./"+files).then( (data, err) => {
     
-    for (var i = 0; i < arguments.length; ++i) {
+    for (let i = 0; i < arguments.length; ++i) {
       if (typeof arguments[i] !== 'undefined') {
         // this would be a linked file.js with amd support
-        var key = globalExpose[files[i]];
+        let key = globalExpose[files[i]];
         if (key) {
           window[key] = arguments[i];
         } else {

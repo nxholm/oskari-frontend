@@ -25,7 +25,7 @@ Oskari.clazz.category('Oskari.Sandbox', 'map-layer-methods', {
   * @return {Oskari.mapframework.domain.WmsLayer[]/Oskari.mapframework.domain.WfsLayer[]/Oskari.mapframework.domain.VectorLayer[]/Mixed}
   */
   findAllSelectedMapLayers: function () {
-    var layersList = this.getMap().getLayers();
+    let layersList = this.getMap().getLayers();
     // copy the array so changing it wont change the core data
     return layersList.slice(0);
   },
@@ -35,7 +35,7 @@ Oskari.clazz.category('Oskari.Sandbox', 'map-layer-methods', {
   * @return {Oskari.mapframework.domain.WmsLayer[]/Oskari.mapframework.domain.WfsLayer[]/Oskari.mapframework.domain.VectorLayer[]/Mixed}
   */
   findAllHighlightedLayers: function () {
-    var layersList = this.getMap().getActivatedLayers();
+    let layersList = this.getMap().getActivatedLayers();
     return layersList.slice(0);
   },
 

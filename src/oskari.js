@@ -4,7 +4,7 @@
  * A set of methods to support loosely coupled classes and instances for the mapframework
  */
 Oskari = (function () {
-    var _markers = [];
+    let _markers = [];
 
     return {
         VERSION : "1.44.0",

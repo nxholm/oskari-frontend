@@ -14,7 +14,7 @@ jQuery.ajaxSetup({ cache: false });
   * @param {} bundleManager
   *
   */
-  var Bundle_facade = function () {
+  let Bundle_facade = function () {
     /**
     * @property appSetup
     * application startup sequence
@@ -66,15 +66,15 @@ jQuery.ajaxSetup({ cache: false });
 
       if(config) {
         // wrap to acceptable format
-        var configName = recData.bundleinstancename || recData.bundlename;
-        var tmp = {};
+        let configName = recData.bundleinstancename || recData.bundlename;
+        let tmp = {};
         tmp[configName] = config;
         config = tmp;
       }
       else {
         config = this.appConfig;
       }
-      var loader = Oskari.loader([recData], config);
+      let loader = Oskari.loader([recData], config);
       loader.processSequence(callback);
     },
     /**
@@ -86,7 +86,7 @@ jQuery.ajaxSetup({ cache: false });
     * @param  {Function} modifyCB  Optional callback that is called appsetup is loaded, but before it's used by Oskari
     */
     loadAppSetup : function(url, params, errorCB, successCB, modifyCB) {
-      var me = this;
+      let me = this;
       jQuery.ajax({
         type : 'GET',
         dataType : 'json',
@@ -162,7 +162,7 @@ jQuery.ajaxSetup({ cache: false });
     },
 
     startApplication: function (callback) {
-      var loader = Oskari.loader(this.appSetup.startupSequence, this.appConfig);
+      let loader = Oskari.loader(this.appSetup.startupSequence, this.appConfig);
       loader.processSequence(callback);
     },
 

@@ -29,7 +29,7 @@ Oskari.clazz.category('Oskari.Sandbox', 'map-methods', {
   *          Refreshes the map state so that the added layers are shown correctly
   */
   syncMapState: function (blnInitialMove, mapModule) {
-    var mapDomain = this.getMap(),
+    let mapDomain = this.getMap(),
     zoom = mapDomain.getZoom(),
     maxZoom = 13;
 
@@ -64,7 +64,7 @@ Oskari.clazz.category('Oskari.Sandbox', 'map-methods', {
   generateMapLinkParameters: function (options) {
     // get stateful component parameters
     // Note! These parameters must be passed to the server in index.js to be used
-    var components = this.getStatefulComponents(),
+    let components = this.getStatefulComponents(),
     iterator = null,
     component = null,
     optionsLinkParameterArray = [],
@@ -75,7 +75,7 @@ Oskari.clazz.category('Oskari.Sandbox', 'map-methods', {
 
         // Make sure the function exists and is a function
         if (component.getStateParameters && typeof component.getStateParameters === "function") {
-          var params = component.getStateParameters();
+          let params = component.getStateParameters();
           if (params) {
             componentLinkParameterArray.push(params);
           }

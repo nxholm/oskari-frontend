@@ -6,8 +6,8 @@
 *
 */
 Oskari.util = (function () {
-    var log = Oskari.log('Oskari.util');
-    var util = {};
+    let log = Oskari.log('Oskari.util');
+    let util = {};
 
     /**
     * Checks at if value has leading zeros.
@@ -37,7 +37,7 @@ Oskari.util = (function () {
         if(value === null) {
             return false;
         }
-        var reg = new RegExp('^[-+]?[0-9]+[.]?[0-9]*([eE][-+]?[0-9]+)?$'),
+        let reg = new RegExp('^[-+]?[0-9]+[.]?[0-9]*([eE][-+]?[0-9]+)?$'),
             isNumber = true,
             i;
 
@@ -69,7 +69,7 @@ Oskari.util = (function () {
     * @param {Object} value checked value
     */
     util.isDecimal = function(value){
-        var isDecimal = true,
+        let isDecimal = true,
             i,
             s,
             val;
@@ -113,7 +113,7 @@ Oskari.util = (function () {
     * @param {Object} value checked value
     */
     util.decimals = function(value){
-        var val,
+        let val,
             maxDecimals = 0;
 
         if(!value || value === null || value === '' || (isNaN(value) && typeof value !== 'object')) {
@@ -145,12 +145,12 @@ Oskari.util = (function () {
      */
     util.hexToRgb = function(hex) {
         // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
-        var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+        let shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
         hex = hex.replace(shorthandRegex, function (m, r, g, b) {
             return r + r + g + g + b + b;
         });
 
-        var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+        let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
         return result ? {
             r: parseInt(result[1], 16),
             g: parseInt(result[2], 16),
@@ -168,7 +168,7 @@ Oskari.util = (function () {
         if (rgb.charAt(0) === '#') {
             return rgb.substring(1);
         }
-        var parts = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/),
+        let parts = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/),
             j;
 
         delete(parts[0]);
@@ -191,11 +191,11 @@ Oskari.util = (function () {
     * @returns {Boolean}: true if nested key exists
     */
     util.keyExists = function(obj, keypath) {
-        var tmpObj = obj,
+        let tmpObj = obj,
             cnt = 0,
             splits = keypath.split('.');
 
-        for (var i=0; tmpObj && i < splits.length; i++) {
+        for (let i=0; tmpObj && i < splits.length; i++) {
             if (splits[i] in tmpObj) {
                 tmpObj = tmpObj[splits[i]];
                 cnt++;
@@ -213,7 +213,7 @@ Oskari.util = (function () {
      * @return {Integer}            sort number
      */
     util.naturalSort = function(valueA, valueB, descending) {
-        var re = /(^([+\-]?(?:\d*)(?:\.\d*)?(?:[eE][+\-]?\d+)?)?$|^0x[\da-fA-F]+$|\d+)/g,
+        let re = /(^([+\-]?(?:\d*)(?:\.\d*)?(?:[eE][+\-]?\d+)?)?$|^0x[\da-fA-F]+$|\d+)/g,
             sre = /^\s+|\s+$/g,   // trim pre-post whitespace
             snre = /\s+/g,        // normalize all whitespace to single ' ' character
             dre = /(^([\w ]+,?[\w ]+)?[\w ]+,?[\w ]+\d+:\d+(:\d+)?[\w ]?|^\d{1,4}[\/\-]\d{1,4}[\/\-]\d{1,4}|^\w+, \w+ \d+, \d{4})/,
@@ -274,7 +274,7 @@ Oskari.util = (function () {
 
         if(!sortCompleted) {
             // natural sorting through split numeric strings and default strings
-            for(var cLoc=0, xNl = xN.length, yNl = yN.length, numS=Math.max(xNl, yNl); cLoc < numS; cLoc++) {
+            for(let cLoc=0, xNl = xN.length, yNl = yN.length, numS=Math.max(xNl, yNl); cLoc < numS; cLoc++) {
                 oFxNcL = normChunk(xN[cLoc] || '', xNl);
                 oFyNcL = normChunk(yN[cLoc] || '', yNl);
 
@@ -304,7 +304,7 @@ Oskari.util = (function () {
     };
 
     util.getColorBrightness = function(color){
-        var r,g,b,brightness;
+        let r,g,b,brightness;
 
         if (color.match(/^rgb/)) {
           color = color.match(/rgba?\(([^)]+)\)/)[1];
@@ -338,22 +338,22 @@ Oskari.util = (function () {
     };
 
     util.isMobile = function() {
-        var md = new MobileDetect(window.navigator.userAgent);
-        var mobileDefs = {
+        let md = new MobileDetect(window.navigator.userAgent);
+        let mobileDefs = {
             width: 500,
             height: 400
         };
-        var size = {
+        let size = {
             height: jQuery(window).height(),
             width: jQuery(window).width()
         };
 
-        var isSizeMobile = false;
+        let isSizeMobile = false;
         if(size.width <= mobileDefs.width || size.height <= mobileDefs.height) {
             isSizeMobile = true;
         }
 
-        var isMobile = (md.mobile() !== null) ? true : isSizeMobile;
+        let isMobile = (md.mobile() !== null) ? true : isSizeMobile;
 
         return isMobile;
     };
@@ -367,7 +367,7 @@ Oskari.util = (function () {
         return DOMPurify.sanitize(content, {SAFE_FOR_JQUERY: true, ADD_ATTR: ['target']});
     };
 
-    var validCoordinates = function(point) {
+    let validCoordinates = function(point) {
         if(!point && typeof point !== 'object' && isNaN(point.length) && point.length !== 2)  {
             return false;
         } else {
@@ -375,14 +375,14 @@ Oskari.util = (function () {
         }
     };
 
-    var coordChars = {
+    let coordChars = {
         CHAR_DEG: "\u00B0",
         CHAR_MIN: "\u0027",
         CHAR_SEC: "\u0022",
         CHAR_SEP: "\u0020"
     };
 
-    var coordinateDMSDecode = function(value) {
+    let coordinateDMSDecode = function(value) {
         if(typeof value === 'number') {
             value = '' + value;
         }
@@ -390,7 +390,7 @@ Oskari.util = (function () {
         // also convert comma to dot
         value = value.replace(',', '.');
 
-        var patterns = {
+        let patterns = {
             'DDMMSS.s':     '(-?\\d+)[' + coordChars.CHAR_DEG + 'd]\\s*' +          // DD
                             '(-?\\d+)' + coordChars.CHAR_MIN + '\\s*' +               // MM
                             '(-?\\d+(?:\\.\\d+)?)' + coordChars.CHAR_SEC,             // SS.s
@@ -401,7 +401,7 @@ Oskari.util = (function () {
             'DD.ddddd':     '(\\d+(?:\\.\\d+)?)[' + coordChars.CHAR_DEG + 'd]\\s*' // DD.ddd
         };
 
-        for(var key in patterns) {
+        for(let key in patterns) {
             if(patterns.hasOwnProperty(key) && value.match(new RegExp(patterns[key]))) {
                 log.debug('Coordinate match to pattern ' + key);
                 return value.match(new RegExp(patterns[key]));
@@ -413,18 +413,18 @@ Oskari.util = (function () {
     };
 
     util.coordinateMetricToDegrees = function(point, decimals){
-        var roundToDecimals = decimals || 0;
+        let roundToDecimals = decimals || 0;
         if(roundToDecimals>20) {
             roundToDecimals = 20;
         }
         if(validCoordinates(point))  {
             // first coordinate
-            var dms1 = NaN;
+            let dms1 = NaN;
             if(!coordinateDMSDecode(point[0])) {
-                var p1 = parseFloat(point[0]);
-                var d1 = p1|0;
-                var m1 = ((p1 - d1) * 60)|0;
-                var s1 = (p1 - d1 - m1/60) * 3600;
+                let p1 = parseFloat(point[0]);
+                let d1 = p1|0;
+                let m1 = ((p1 - d1) * 60)|0;
+                let s1 = (p1 - d1 - m1/60) * 3600;
                 s1 = parseFloat(s1).toFixed(roundToDecimals);
                 s1 = '' + s1;
                 s1 = s1.replace('.', Oskari.getDecimalSeparator());
@@ -434,12 +434,12 @@ Oskari.util = (function () {
             }
 
             // second coordinate
-            var dms2 = NaN;
+            let dms2 = NaN;
             if(!coordinateDMSDecode(point[1])) {
-                var p2 = parseFloat(point[1]);
-                var d2 = p2|0;
-                var m2 = ((p2 - d2) * 60)|0;
-                var s2 = (p2 - d2 - m2/60) * 3600;
+                let p2 = parseFloat(point[1]);
+                let d2 = p2|0;
+                let m2 = ((p2 - d2) * 60)|0;
+                let s2 = (p2 - d2 - m2/60) * 3600;
                 s2 = parseFloat(s2).toFixed(roundToDecimals);
                 s2 = '' + s2;
                 s2 = s2.replace('.', Oskari.getDecimalSeparator());
@@ -455,19 +455,19 @@ Oskari.util = (function () {
     };
 
     util.coordinateDegreesToMetric = function(point, decimals){
-        var roundToDecimals = decimals || 0;
+        let roundToDecimals = decimals || 0;
         if(roundToDecimals>20) {
             roundToDecimals = 20;
         }
         if(validCoordinates(point))  {
             // first coordinate
-            var dd1 = NaN;
-            var matches1 = coordinateDMSDecode(point[0]);
+            let dd1 = NaN;
+            let matches1 = coordinateDMSDecode(point[0]);
 
             if (matches1) {
-                var d1 = parseFloat(matches1[1]);
-                var m1 = parseFloat(matches1[2]);
-                var s1 = parseFloat(matches1[3]);
+                let d1 = parseFloat(matches1[1]);
+                let m1 = parseFloat(matches1[2]);
+                let s1 = parseFloat(matches1[3]);
 
                 if (!(isNaN(d1) || isNaN(m1) || isNaN(s1))) {
                     dd1 = parseFloat(d1 + (m1 / 60.0) + (s1 / 3600)).toFixed(roundToDecimals);
@@ -479,13 +479,13 @@ Oskari.util = (function () {
             }
 
             // second coordinate
-            var dd2 = NaN;
-            var matches2 = coordinateDMSDecode(point[1]);
+            let dd2 = NaN;
+            let matches2 = coordinateDMSDecode(point[1]);
 
             if (matches2) {
-                var d2 = parseFloat(matches2[1]);
-                var m2 = parseFloat(matches2[2]);
-                var s2 = parseFloat(matches2[3]);
+                let d2 = parseFloat(matches2[1]);
+                let m2 = parseFloat(matches2[2]);
+                let s2 = parseFloat(matches2[3]);
 
                 if (!(isNaN(d2) || isNaN(m2) || isNaN(s2))) {
                     dd2 = parseFloat(d2 + (m2 / 60.0) + (s2 / 3600)).toFixed(roundToDecimals);
@@ -503,8 +503,8 @@ Oskari.util = (function () {
     };
 
     util.coordinateIsDegrees = function(point){
-        var matches1 = coordinateDMSDecode(point[0]);
-        var matches2 = coordinateDMSDecode(point[1]);
+        let matches1 = coordinateDMSDecode(point[0]);
+        let matches2 = coordinateDMSDecode(point[1]);
         return (matches1 && matches2);
     };
 
@@ -517,10 +517,10 @@ Oskari.util = (function () {
      * @return {String} value for the parameter or null if not found
      */
     util.getRequestParam = function (name, defaultValue) {
-      var query = location.search.substr(1);
-      var result = {};
+      let query = location.search.substr(1);
+      let result = {};
       query.split("&").forEach(function(part) {
-        var item = part.split("=");
+        let item = part.split("=");
         result[item[0]] = decodeURIComponent(item[1]);
       });
       return result[name] || defaultValue;
@@ -566,9 +566,9 @@ Oskari.util = (function () {
             array.splice(to, 0, array.splice(from, 1)[0]);
         } else {
             // works better when we are not moving things very far
-            var target = array[from];
-            var inc = (to - from) / Math.abs(to - from);
-            var current = from;
+            let target = array[from];
+            let inc = (to - from) / Math.abs(to - from);
+            let current = from;
             for (; current != to; current += inc) {
                 array[current] = array[current + inc];
             }

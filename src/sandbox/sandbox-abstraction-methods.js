@@ -35,10 +35,10 @@ Oskari.clazz.category('Oskari.Sandbox', 'abstraction-methods', {
   *      callback on action completed (optional)
   */
   ajax: function (url, success, failure, data, complete) {
-    var userIsLoggedIn = Oskari.user().isLoggedIn();
+    let userIsLoggedIn = Oskari.user().isLoggedIn();
     // default to jQuery
     if (jQuery && jQuery.ajax) {
-      var failureWrapper = function (jqXHR, textStatus, err) {
+      let failureWrapper = function (jqXHR, textStatus, err) {
         if (jqXHR.status === 403 && userIsLoggedIn) {
           // user was logged in but still unauthorized ->
           // session might have been expired.
@@ -49,7 +49,7 @@ Oskari.clazz.category('Oskari.Sandbox', 'abstraction-methods', {
         }
       };
       // if data != null -> type = POST
-      var type = "GET";
+      let type = "GET";
       if (data) {
         type = "POST";
       }
@@ -80,7 +80,7 @@ Oskari.clazz.category('Oskari.Sandbox', 'abstraction-methods', {
   * @return {Object} Q defer or undefined if Q is not available
   */
   getDefer: function () {
-    var ret;
+    let ret;
     // Use Q if available
     if (window.Q && window.Q.defer) {
       ret = window.Q.defer();

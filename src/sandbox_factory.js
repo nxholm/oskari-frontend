@@ -4,15 +4,15 @@
         // can't add functions if no Oskari ref
         return;
     }
-    var defaultName = 'sandbox';
-    var getName = function(name) {
+    let defaultName = 'sandbox';
+    let getName = function(name) {
         return name || defaultName;
     }
 
-    var sandboxStore = o.createStore({
+    let sandboxStore = o.createStore({
         defaultValue : function(sandboxName) {
             // Notice that these are not part of the core.
-            var sb = o.clazz.create('Oskari.Sandbox', getName(sandboxName));
+            let sb = o.clazz.create('Oskari.Sandbox', getName(sandboxName));
             return sb;
         }
     });

@@ -5,8 +5,8 @@
 * @return {Integer} next available sequence number for the type
 */
 (function(o) {
-  var serials = {};
-  var count = 0;
+  let serials = {};
+  let count = 0;
   o.seq = {
     nextVal: function (type) {
       if(!type) {
