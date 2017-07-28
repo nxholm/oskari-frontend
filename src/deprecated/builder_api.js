@@ -1,5 +1,5 @@
-(function(o){
-    if(!o) {
+(function (o) {
+    if (!o) {
         // can't add functions if no Oskari ref
         return;
     }
@@ -130,7 +130,6 @@
 
         return rv;
     };
-
 
     /**
      * @public @static @method Oskari.extensionCls O2 api for extension classes
