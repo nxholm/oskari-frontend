@@ -187,7 +187,7 @@ processSequence: function (done) {
     }
     var basepath = value.bundlePath + '/' + id;
     var path = basepath + '/bundle.js';
-    paths.push(path.split('//').join('/'));
+    paths.push(path.split('//').join('/').substring(1));
     bundles.push({
       id: id,
       path: basepath
@@ -201,8 +201,7 @@ processSequence: function (done) {
   }
   // load all bundlePaths mentioned in sequence-block
   // webpack will ignore require if you change require => requirejs
-  requirejs(paths, () => {
-    console.log(paths);
+  import("/" + paths).then( (data, err) => {
     // if loaded undefined - find from Oskari.instalBundle register with id
     for (var i = 0; i < arguments.length; ++i) {
       if (typeof arguments[i] !== 'undefined') {
@@ -327,7 +326,8 @@ handleBundleLoad: function (basePath, src, callback) {
     });
   }
   // webpack will ignore require if you change require => requirejs
-  requirejs(files, () => {
+  import("./"+files.substring(1)).then( (data, err) => {
+    
     for (var i = 0; i < arguments.length; ++i) {
       if (typeof arguments[i] !== 'undefined') {
         // this would be a linked file.js with amd support
