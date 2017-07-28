@@ -36,5 +36,7 @@ exports.coreFiles = () => {
 }
 exports.packages = () => {
   let packageDir = glob.sync("./packages/**/*.js");
-  return packageDir
+  let mapfull= glob.sync("./bundles/framework/mapfull/**/*.js");
+  let combine = packageDir.concat(mapfull)
+  return combine;
 }
