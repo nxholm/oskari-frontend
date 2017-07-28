@@ -2,17 +2,15 @@ var path = require('path')
 var utils = require('./utils')
 var config = require('../config')
 var core = require('./core')
-// var resolvedPaths= [];
+
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
-// core.coreFiles().forEach(function(path){
-//   resolvedPaths.push(resolve(path));
-// });
 
 module.exports = {
   entry: {
-    oskaricore: core.coreFiles()
+    oskaricore: core.coreFiles(),
+    oskaripackages: core.packages()
   },
   output: {
     path: config.build.assetsRoot,
@@ -20,7 +18,14 @@ module.exports = {
     publicPath: process.env.NODE_ENV === 'production'
       ? config.build.assetsPublicPath
       : config.dev.assetsPublicPath,
-      library: 'Oskari'
+      library: ["Oskari", "[name]"]
+  },
+  externals: {
+        // require("jquery") is external and available
+        //  on the global var jQuery
+        "jquery": "jQuery",
+        "Proj4js": "Proj4js",
+        "Oskari": "Oskari"
   },
   resolve: {
     extensions: ['.js', '.json'],
