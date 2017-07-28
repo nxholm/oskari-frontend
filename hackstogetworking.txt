@@ -1,0 +1,2 @@
+in node_modules/babel-plugin-transform-es2015-modules-commonjs/lib/index.js line 113 commented out:     // inherits: require("babel-plugin-transform-strict-mode"),
+so strict mode isn't applied to webpack bundel
