@@ -9,7 +9,6 @@
   "dependencies": {},
   "scripts": {
     "build": "node build/build.js eslint --fix src/**",
-    "webpack": "webpack",
     "bundle": "webpack --config ./bundles/webpack.config.babel.js",
     "dev": "node build/dev-server.js"
   },

@@ -1,18 +1,36 @@
-# Oskari
+# ES6 SUPPORT FOR OSKARI
 
-[Oskari](http://www.oskari.org/) Map Application Framework aims to provide a framework and a collection of functionality-enhancing bundles and plugins for rapid development of feature-rich GI web applications.
+## SETUP:  
 
-Documentation available at [http://www.oskari.org].
+``` bash
+# install dependencies
+npm i
 
-# Reporting issues
+# bundle the project files defined in /build/webpack.base.conf.js (production)
+npm run build
 
-All Oskari-related issues should be reported here: https://github.com/oskariorg/oskari-docs/issues
+# hot module loading, not currently supported, but may be possible to use webpack dev server as reverse proxy in jetty
+npm run dev
+```
 
-# Contributing
+## steps:
 
-Please read the [contribution guidelines](http://oskari.org/documentation/development/how-to-contribute) before contributing pull requests to the Oskari project.
+In jetty folder __contexts/oskari-front.xml__ point to this project.
 
-## Copyright and license
+In app root run:
+`npm run build`  
+to create a minified version of oskari to __/dist/static/js/__
 
-Copyright 2014 - present NLS under dual license MIT (included LICENSE.md) and [EUPL v1.1](https://joinup.ec.europa.eu/software/page/eupl/licence-eupl)
-(any language version applies, English version is included in https://github.com/oskariorg/oskari-docs/blob/master/documents/LICENSE-EUPL.pdf).
+In __oskari-server/servlet-map/src/main/resources/META-INF/resources/spring-map-jsp/index.jsp__ change the Oskari section:  
+
+``` javascript
+<script type="text/javascript"
+        src="/Oskari/dist/static/js/oskaricore.js">
+</script>
+<script type="text/javascript"
+        src="/Oskari/dist/static/js/oskaripackages.js">
+</script>
+```
+to use the es6 enabled oskari.
+
+Build server (mvn clean install), get the .war-file __oskari-server/webapp-map/oskari.map.war__ and move it to __jetty/webapps__ and start jetty.
