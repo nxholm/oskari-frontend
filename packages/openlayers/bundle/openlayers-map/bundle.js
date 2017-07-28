@@ -394,7 +394,7 @@
 					});
 
 	var metas = Oskari.clazz
-			.metadata('Oskari.mapframework.openlayers.map.Bundle');
+			.getMetadata('Oskari.mapframework.openlayers.map.Bundle');
 
 	var libpath = "../../../../map-application-framework/lib/";
 
