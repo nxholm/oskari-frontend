@@ -1,4 +1,6 @@
-exports.coreFiles = function() {
+var glob = require('glob');
+
+exports.coreFiles = () => {
     let files = [ 
       './libraries/requirejs/require-2.3.4.min.js',
       './libraries/requirejs/text-plugin-2.0.14.js',
@@ -32,6 +34,7 @@ exports.coreFiles = function() {
 
     return files;
 }
-exports.bundlesToLoad = function(){
-  
+exports.packages = () => {
+  let packageDir = glob.sync("./packages/**/*.js");
+  return packageDir
 }
