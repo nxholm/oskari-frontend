@@ -25,7 +25,8 @@ module.exports = {
         //  on the global var jQuery
         "jquery": "jQuery",
         "Proj4js": "Proj4js",
-        "Oskari": "Oskari"
+        "Oskari": "Oskari",
+        "_": "lodash"
   },
   resolve: {
     extensions: ['.js', '.json'],
