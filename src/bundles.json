@@ -1,0 +1,92 @@
+{
+	"startupSequence": [
+		{
+			"bundlename": "openlayers-default-theme",
+			"metadata": {
+				"Import-Bundle": {
+					"openlayers-default-theme": {
+						"bundlePath": "../../../packages/openlayers/bundle/"
+					},
+					"openlayers-full-map": {
+						"bundlePath": "../../../packages/openlayers/bundle/"
+					}
+				}
+			}
+		}, {
+			"bundlename": "mapfull",
+			"metadata": {
+				"Import-Bundle": {
+					"mapwmts": {
+	                    "bundlePath": "../../../packages/framework/bundle/"
+	                },
+	                "mapmodule-plugin": {
+	                    "bundlePath": "../../../packages/framework/bundle/"
+	                },
+                    "ui-components": {
+	                    "bundlePath": "../../../packages/framework/bundle/"
+	                },
+	                "mapfull": {
+	                    "bundlePath": "../../../packages/framework/bundle/"
+	                },
+	                "oskariui": {
+	                    "bundlePath": "../../../packages/framework/bundle/"
+	                },
+	                "mapwfs2": {
+	                    "bundlePath": "../../../packages/framework/bundle/"
+	                },
+	                "mapuserlayers": {
+            			"bundlePath": "../../../packages/framework/bundle/"
+          			},
+					"mapstats": {
+	                    "bundlePath": "../../../packages/mapping/ol2/"
+	                },
+                    "mapmyplaces": {
+                        "bundlePath": "../../../packages/framework/bundle/"
+                    },
+	                "mapanalysis": {
+	                    "bundlePath": "../../../packages/framework/bundle/"
+	                },
+	                "maparcgis": {
+	                    "bundlePath": "../../../packages/arcgis/bundle/"
+	                }
+				}
+			}
+		}
+    ],
+    "configuration" : {
+           "mapfull": {
+      "state": {
+         "selectedLayers": [{
+            "id": "base_35"
+         }],
+         "zoom": 1,
+         "north": "6874042",
+         "east": "517620"
+      },
+      "conf": {
+         "globalMapAjaxUrl": "/ajax?",
+         "plugins": [
+            {
+               "id": "Oskari.mapframework.bundle.mapmodule.plugin.LayersPlugin"
+            },
+            {
+               "id": "Oskari.mapframework.mapmodule.WmsLayerPlugin"
+            },
+            {
+               "id": "Oskari.mapframework.mapmodule.ControlsPlugin"
+            },
+            {
+               "id": "Oskari.mapframework.bundle.mapmodule.plugin.ScaleBarPlugin"
+            },
+            {
+               "id": "Oskari.mapframework.bundle.mapmodule.plugin.Portti2Zoombar"
+            }
+         ],
+         "layers": [
+            "...layers as JSON objects..."
+         ],
+         "imageLocation": "/Oskari/resources"
+      }
+   }
+    }
+}

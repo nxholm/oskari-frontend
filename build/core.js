@@ -29,14 +29,19 @@ exports.coreFiles = () => {
       // Oskari application helpers
       './src/oskari.app.js', 
       './src/loader.js',
-      './src/oskari-loader.js'
-      ];
+      './src/oskari-loader.js',
+      './src/bundles.json'
+     ];
 
     return files;
 }
 exports.packages = () => {
   let packageDir = glob.sync("./packages/**/*.js");
   let mapfull= glob.sync("./bundles/framework/mapfull/**/*.js");
-  let combine = packageDir.concat(mapfull)
+  let search = glob.sync("./bundles/service/search/**/*.js");
+  let popup = glob.sync("./bundles/framework/divmanazer/component/*.js");
+  let mapping = glob.sync("./bundles/mapping/**/**/*.js");
+  // set service = glob.sync("./bundles/mapping/mapmodule/service/*.js");
+  let combine = packageDir.concat(mapfull, search, popup, mapping);
   return combine;
 }

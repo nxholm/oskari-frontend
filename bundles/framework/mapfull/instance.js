@@ -126,6 +126,7 @@ Oskari.clazz.define('Oskari.mapframework.bundle.mapfull.MapFullBundleInstance',
          *
          */
         _createUi: function () {
+            debugger;
             var me = this,
                 module = Oskari.clazz.create(
                     'Oskari.mapframework.ui.module.common.MapModule',

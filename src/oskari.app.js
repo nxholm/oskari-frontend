@@ -106,6 +106,13 @@ jQuery.ajaxSetup({ cache: false });
         }
       });
     },
+    loadES6AppSetup: function () {
+      import("./bundles.json").then( (data, err) => {
+        console.log(data);
+        this.setApplicationSetup(data);
+        this.startApplication();
+      });
+    },
     /**
     * @public @method setApplicationSetup
     * Each bundledef is of kind playable by method playBundle. callback:

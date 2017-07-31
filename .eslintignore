@@ -1,5 +1,5 @@
 build/*.js
 config/*.js
-src/*.js
+src/**
 bundles/**
 packages/**

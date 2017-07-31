@@ -21,12 +21,13 @@ module.exports = {
       library: ["Oskari", "[name]"]
   },
   externals: {
-        // require("jquery") is external and available
-        //  on the global var jQuery
+        "require":"requirejs",
         "jquery": "jQuery",
         "Proj4js": "Proj4js",
         "Oskari": "Oskari",
-        "_": "lodash"
+        "_": "lodash",
+        "ol":"ol",
+        "OpenLayers": "OpenLayers"
   },
   resolve: {
     extensions: ['.js', '.json'],
