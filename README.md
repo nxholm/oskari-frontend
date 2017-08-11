@@ -34,3 +34,7 @@ In __oskari-server/servlet-map/src/main/resources/META-INF/resources/spring-map-
 to use the es6 enabled oskari.
 
 Build server (mvn clean install), get the .war-file __oskari-server/webapp-map/oskari.map.war__ and move it to __jetty/webapps__ and start jetty.
+
+## other possible hacks: 
+in __node_modules/babel-plugin-transform-es2015-modules-commonjs/lib/index.js__ line 113 commented out: // inherits: require("babel-plugin-transform-strict-mode"),
+so strict mode isn't applied to webpack bundel
