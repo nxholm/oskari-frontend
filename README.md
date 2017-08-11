@@ -40,5 +40,5 @@ in __node_modules/babel-plugin-transform-es2015-modules-commonjs/lib/index.js__ 
 so strict mode isn't applied to webpack bundel
 
 ## info:
-__/build__ folder has the webpack configurations for different environments.
+__/build__ folder has the webpack configurations for different environments.  
 __/build/core.js__ currently defines what should be bundled.
