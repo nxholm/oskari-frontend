@@ -31,6 +31,9 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.json'],
+    alias: {
+      libraries: resolve('libraries')
+    }
   },
   module: {
     rules: [

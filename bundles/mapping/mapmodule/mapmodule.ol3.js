@@ -1,5 +1,4 @@
-import * as ol from '../../../libraries/ol3/ol-v3.18.2-oskari.js';
-// import * as ol from 'openlayers';
+import * as ol from 'libraries/ol3/ol-v3.18.2-oskari.js';
 /**
  * @class Oskari.mapframework.ui.module.common.MapModule
  *
@@ -72,7 +71,6 @@ Oskari.clazz.define('Oskari.mapframework.ui.module.common.MapModule',
             });
 
             var projection = ol.proj.get(me.getProjection());
-            console.log(projection);
             projection.setExtent(this.__boundsToArray(this.getMaxExtent()));
 
             map.setView(new ol.View({

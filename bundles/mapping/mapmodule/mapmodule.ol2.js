@@ -1,4 +1,4 @@
-import * as OpenLayers from '../../../libraries/OpenLayers/OpenLayers-2.13.1.js';
+import * as OpenLayers from 'libraries/OpenLayers/OpenLayers-2.13.1.js';
 
 /**
  * @class Oskari.mapframework.ui.module.common.MapModule
