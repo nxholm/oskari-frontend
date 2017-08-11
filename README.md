@@ -38,3 +38,7 @@ Build server (mvn clean install), get the .war-file __oskari-server/webapp-map/o
 ## other possible hacks: 
 in __node_modules/babel-plugin-transform-es2015-modules-commonjs/lib/index.js__ line 113 commented out: // inherits: require("babel-plugin-transform-strict-mode"),
 so strict mode isn't applied to webpack bundel
+
+## info:
+__/build__ folder has the webpack configurations for different environments.
+__/build/core.js__ currently defines what should be bundled.
