@@ -10,7 +10,9 @@ function resolve (dir) {
 module.exports = {
   entry: {
     oskaricore: core.coreFiles(),
-    oskaripackages: core.packages()
+    oskaripackages: core.packages(),
+    vendor: [resolve('libraries')+"/jquery/jquery-1.7.1.min.js",resolve('libraries')+"/ol3/ol-v3.20.1-oskari.js", resolve('libraries')+"/proj4js-2.4.3/dist/proj4-src.js",
+     resolve('libraries')+"/lodash/2.3.0/lodash.js"]
   },
   output: {
     path: config.build.assetsRoot,
@@ -19,15 +21,6 @@ module.exports = {
       ? config.build.assetsPublicPath
       : config.dev.assetsPublicPath,
       library: ["Oskari", "[name]"]
-  },
-  externals: {
-        "require":"requirejs",
-        "jquery": "jQuery",
-        "Proj4js": "Proj4js",
-        "Oskari": "Oskari",
-        "_": "lodash",
-        "ol":"ol",
-        "OpenLayers": "OpenLayers"
   },
   resolve: {
     extensions: ['.js', '.json'],
