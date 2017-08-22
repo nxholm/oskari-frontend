@@ -82,9 +82,38 @@
                "id": "Oskari.mapframework.bundle.mapmodule.plugin.Portti2Zoombar"
             }
          ],
-         "layers": [
-            "...layers as JSON objects..."
-         ],
+         "layers": [ {
+           "attributes":{"crossOrigin": "anonymous"},
+			"baseLayerId":-1,
+			"created":"nullTnullZ",
+			"dataUrl_uuid":"c22da116-5095-4878-bb04-dd7db3a1a341",
+			"geom":"POLYGON ((51857.07752019336 6617351.758085947, 199877.68034737493 7795699.644448195, 674163.706166442 7782724.690696563, 759905.4330615391 6599589.560233721, 51857.07752019336 6617351.758085947))",
+			"id":"base_35",
+			"inspire":"Taustakartat",
+			"layerName":"taustakartta",
+			"name":"Taustakarttasarja",
+			"opacity":100,
+			"options":{
+			"format":"image/png",
+			"requestEncoding":"REST",
+			"urlTemplate":"https://karttamoottori.maanmittauslaitos.fi/maasto/wmts/1.0.0/taustakartta/default/{TileMatrixSet}/{TileMatrix}/{TileRow}/{TileCol}.png" },
+			"orgName":"Maanmittauslaitos",
+			"params":{},
+			"permissions":{ "publish":"no_publication_permission" },
+			"realtime":false,
+			"refreshRate":0,
+			"style":"default",
+			"styles" : {
+			"name":"default",
+			"title":"default" },
+			"subtitle":"Maanmittauslaitos",
+			"tileMatrixSetId":"ETRS-TM35FIN",
+			"tileUrl":"https://karttamoottori.maanmittauslaitos.fi/maasto/wmts/1.0.0/taustakartta/default/{TileMatrixSet}/{TileMatrix}/{TileRow}/{TileCol}.png",
+			"type":"wmslayer",
+			"updated":"nullTnullZ",
+			"url":"https://karttamoottori.maanmittauslaitos.fi/maasto/wmts",
+			"version":"1.0.0"
+		 }],
          "imageLocation": "/Oskari/resources"
       }
    }

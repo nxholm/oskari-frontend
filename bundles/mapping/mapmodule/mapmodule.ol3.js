@@ -1,4 +1,5 @@
-import * as ol from 'libraries/ol3/ol-v3.18.2-oskari.js';
+import * as ol from 'libraries/ol3/ol-v3.20.1-oskari.js';
+window.ol = ol;
 /**
  * @class Oskari.mapframework.ui.module.common.MapModule
  *
@@ -53,6 +54,7 @@ Oskari.clazz.define('Oskari.mapframework.ui.module.common.MapModule',
 
             var me = this;
             var sandbox = me._sandbox;
+            // var _3067 = proj4.defs("EPSG:3067","+proj=utm +zone=35 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs");
             // this is done BEFORE enhancement writes the values to map domain
             // object... so we will move the map to correct location
             // by making a MapMoveRequest in application startup
@@ -69,13 +71,16 @@ Oskari.clazz.define('Oskari.mapframework.ui.module.common.MapModule',
                 loadTilesWhileInteracting: true,
                 loadTilesWhileAnimating: true
             });
-
-            var projection = ol.proj.get(me.getProjection());
-            projection.setExtent(this.__boundsToArray(this.getMaxExtent()));
+            var _3067 = new ol.proj.Projection({
+                code: me.getProjection(),
+                extent: this.__boundsToArray(this.getMaxExtent())
+            });
+            // var projection = ol.proj.get(me.getProjection());
+            // projection.setExtent(this.__boundsToArray(this.getMaxExtent()));
 
             map.setView(new ol.View({
-                extent: projection.getExtent(),
-                projection: projection,
+                extent: _3067.getExtent(),
+                projection: _3067,
                 // actual startup location is set with MapMoveRequest later on
                 // still these need to be set to prevent errors
                 center: [0, 0],

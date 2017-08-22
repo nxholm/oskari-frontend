@@ -1,3 +1,5 @@
+import * as proj4 from 'libraries/proj4js-2.4.3/dist/proj4-src.js';
+
 /**
  * @class Oskari.mapframework.bundle.mapfull.MapFullBundleInstance
  *
@@ -247,6 +249,7 @@ Oskari.clazz.define('Oskari.mapframework.bundle.mapfull.MapFullBundleInstance',
                             initialLayers[i]
                         );
                     } else {
+                        debugger;
                         mapLayerService.addLayer(mapLayer, true);
                     }
                 }
@@ -314,19 +317,21 @@ Oskari.clazz.define('Oskari.mapframework.bundle.mapfull.MapFullBundleInstance',
                 }
             });
             // OL3 uses proj4
-            if(window.proj4) {
+            if(proj4) {
                 // ensure static projections are defined
                 jQuery.each(defaultDefs, function(srs, defs) {
-                    window.proj4.defs(srs, defs);
+                    proj4.defs(srs, defs);
                 });
+                
+                window.proj4 = proj4;
             }
             // OL2 uses Proj4js
             else {
-                if(!Proj4js) {
-                    window.Proj4js = {};
-                }
-                // ensure static projections are defined
-                Proj4js.defs = defaultDefs;
+                // if(!Proj4js) {
+                //     window.Proj4js = {};
+                // }
+                // // ensure static projections are defined
+                // Proj4js.defs = defaultDefs;
             }
         },
 
