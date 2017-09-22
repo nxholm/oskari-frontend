@@ -8,7 +8,7 @@
   "main": "grunt.js",
   "dependencies": {},
   "scripts": {
-    "getStartupSequence": "babel-node build/server-response.js",
+    "startup": "babel-node build/server-response.js",
     "build": "babel-node build/build.js eslint --fix src/**",
     "bundle": "webpack --config ./bundles/webpack.config.babel.js",
     "dev": "node build/dev-server.js"
