@@ -1,4 +1,4 @@
-var glob = require('glob');
+import glob from 'glob';
 
 exports.coreFiles = () => {
     let files = [ 
