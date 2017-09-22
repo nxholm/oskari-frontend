@@ -8,7 +8,7 @@ import fs from 'fs';
     })
     .then(function (response) {
       var start = response.data.startupSequence;
-      fs.writeFile('startupSequence.json', JSON.stringify(start));
+      fs.writeFile('startupSequence.json', JSON.stringify(start, null, 4));
     })
     .catch(function (error) {
       console.log(error);
