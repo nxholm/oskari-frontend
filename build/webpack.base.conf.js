@@ -4,13 +4,18 @@ import config from '../config';
 import core from './core';
 import startupSequence from '../startupSequence.json';
 
-function resolve (dir) {
+resolve = (dir) => {
   return path.join(__dirname, '..', dir)
+}
+parseStartupSequence = () => {
+  startupSequence.forEach( (key ) => {
+    console.log(key);
+  });
 }
 module.exports = {
   entry: {
     "oskari.min": core.coreFiles(),
-    oskaripackages: core.packages(),
+    oskaripackages: parseStartupSequence(),
     vendor: [resolve('libraries')+"/jquery/jquery-1.7.1.min.js",resolve('libraries')+"/ol3/ol-v3.20.1-oskari.js", resolve('libraries')+"/proj4js-2.4.3/dist/proj4-src.js",
      resolve('libraries')+"/lodash/2.3.0/lodash.js"]
   },
