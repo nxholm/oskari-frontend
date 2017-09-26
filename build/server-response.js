@@ -18,6 +18,7 @@ import fs from 'fs';
 
 parseResponse = ( resp ) => {
   var files = [];
+  var re = /(scripts)/g;
   resp.forEach( (key ) => {
     let metadata =  key.metadata; 
     let importkey = "Import-Bundle";
@@ -26,6 +27,10 @@ parseResponse = ( resp ) => {
       let path = key.metadata[importkey][bundle].bundlePath;
       let replacedPath = path.replace('/Oskari', '.')
       var b = replacedPath + bundle + '/bundle.js';
+      fs.readFile(b, 'utf8', function(err, contents) {
+        var a = contents.match(/(scripts)/g);
+        console.log(a);
+    });
       files.push(b);
     }
   });

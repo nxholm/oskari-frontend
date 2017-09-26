@@ -1,2 +1,2 @@
 // HACK ?
-module.exports = Oskari;
+export default Oskari;
