@@ -3,7 +3,7 @@
  *
  * A set of methods to support loosely coupled classes and instances for the mapframework
  */
-Oskari = (function () {
+export default Oskari = (function () {
     let _markers = [];
 
     return {
