@@ -497,11 +497,11 @@ div.tab-material-controls div.title {
 .oskari-flyout.statsgrid-filter-flyout .filter-button {
   margin-top: 1em; }
 .oskari-flyout.statsgrid-filter-flyout .active-filters {
-  width: 15em; }
+  width: 100%; }
 .oskari-flyout.statsgrid-filter-flyout .content {
   width: 32em; }
 .oskari-flyout.statsgrid-filter-flyout .filterIndicator, .oskari-flyout.statsgrid-filter-flyout .filterCondition, .oskari-flyout.statsgrid-filter-flyout .oskari-table-header {
-  width: 15em; }
+  max-width: 30em; }
 .oskari-flyout.statsgrid-filter-flyout .cell {
   height: 1em;
   padding: 7px;
@@ -552,6 +552,7 @@ div.tab-material-controls div.title {
   border-top: 1px solid #22262e;
   border-bottom: 1px solid #22262e; }
 .oskari-flyout.statsgrid-filter-flyout .filter {
+  max-width: inherit;
   padding: 1.2em; }
 .oskari-flyout.statsgrid-filter-flyout .tabsHeader {
   padding-top: 2em !important; }

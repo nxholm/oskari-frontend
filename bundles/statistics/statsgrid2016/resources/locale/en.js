@@ -7,7 +7,8 @@ Oskari.registerLocalization(
             "title": "Thematic maps",
             "search": "Search data",
             "table": "Table",
-            "diagram": "Bar chart"
+            "diagram": "Bar chart",
+            "filter": "Filter"
         },
         "flyout": {
             "title": "Thematic maps"

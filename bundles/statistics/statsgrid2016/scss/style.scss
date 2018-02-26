@@ -834,13 +834,13 @@ div.tab-material-controls div.title {
         margin-top: 1em;
     }
     .active-filters {
-        width: 15em;
+        width: 100%;
     }
     .content {
         width:32em;
     }
     .filterIndicator, .filterCondition, .oskari-table-header {
-        width: 15em;
+        max-width: 30em;
     }
     .cell {
         height: 1em;

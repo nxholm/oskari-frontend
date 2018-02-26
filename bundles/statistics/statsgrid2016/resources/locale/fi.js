@@ -7,7 +7,8 @@ Oskari.registerLocalization(
             "title": "Teemakartat",
             "search": "Aineistohaku",
             "table": "Taulukko",
-            "diagram": "Pylväsdiagrammi"
+            "diagram": "Pylväsdiagrammi",
+            "filter": "Suodatus"
         },
         "flyout": {
             "title": "Teemakartat"

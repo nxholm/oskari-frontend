@@ -7,7 +7,8 @@ Oskari.registerLocalization(
             "title": "Tematiska kartor",
             "search": "Sök data",
             "table": "Tabell",
-            "diagram": "Stapeldiagram"
+            "diagram": "Stapeldiagram",
+            "title": "Filtrering",
         },
         "flyout": {
             "title": "Tematiska kartor"

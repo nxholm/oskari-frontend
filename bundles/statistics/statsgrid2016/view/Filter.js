@@ -1,4 +1,4 @@
-Oskari.clazz.define('Oskari.statistics.statsgrid.view.Filter', function (instance) {
+Oskari.clazz.define('Oskari.statistics.statsgrid.view.Filter', function (title, options, instance) {
     this.instance = instance;
     this.sb = instance.getSandbox();
     this.loc = instance.getLocalization('filter');
@@ -6,8 +6,17 @@ Oskari.clazz.define('Oskari.statistics.statsgrid.view.Filter', function (instanc
     this.panels = {};
     this.conditionSelect = null;
     this.service = this.sb.getService('Oskari.statistics.statsgrid.StatisticsService');
+    this._indicatorSelector = Oskari.clazz.create('Oskari.statistics.statsgrid.SelectedIndicatorsMenu', this.service);
     this.tabsContainer = Oskari.clazz.create('Oskari.userinterface.component.TabContainer');
     this.events();
+    var me = this;
+    this.on('show', function() {
+        if(!me.getElement()) {
+            me.createUi();
+            me.addClass('statsgrid-filter-flyout');
+            me.setContent(me.getElement());
+        }
+    });
 }, {
     _template: {
       wrapper: jQuery('<div></div>'),
@@ -109,13 +118,10 @@ Oskari.clazz.define('Oskari.statistics.statsgrid.view.Filter', function (instanc
       var wrapper = this._template.wrapper.clone();
       var el = this._template.filterContainer.clone();
       var filterIndicator = this._template.filterIndicator({ indicatorToFilter: this.loc.indicatorToFilter });
-      var selectionComponent = Oskari.clazz.create('Oskari.statistics.statsgrid.IndicatorSelection', this.instance, this.sb);
-      selectionComponent.getPanelContent();
 
       wrapper.append( filterIndicator );
 
-
-      wrapper.find('.filterIndicator').append( selectionComponent.getIndicatorSelector() );
+      this._indicatorSelector.render( wrapper.find('.filterIndicator') );
 
       var tabs = this.createTabs();
       wrapper.append( tabs );
@@ -150,8 +156,13 @@ Oskari.clazz.define('Oskari.statistics.statsgrid.view.Filter', function (instanc
     getFilterOptions: function () {
         var condition = this.conditionSelect.getValue();
         var value = this.getElements().filterValue.val();
+        var indicator = this.service.getStateService().activeIndicator;
+        var indicatorLabel;
+        this.service.getUILabels(indicator, function(labels) {
+            indicatorLabel = labels.full;
+        });
         return {
-            indicator: null,
+            indicator: indicatorLabel,
             condition: condition,
             value: value
         };
@@ -206,7 +217,6 @@ Oskari.clazz.define('Oskari.statistics.statsgrid.view.Filter', function (instanc
 
       panelWrapper.find('.filterCondition').append( this.createSelect() );
 
-
         panel.getContainer().prepend(panelWrapper);
         panel.setPriority(1.0);
         panel.setId('value-filter');
@@ -240,5 +250,5 @@ Oskari.clazz.define('Oskari.statistics.statsgrid.view.Filter', function (instanc
         return me.tabsContainer.ui;
     }
 }, {
-        extend: ['Oskari.userinterface.extension.DefaultView']
+        extend: ['Oskari.userinterface.extension.ExtraFlyout']
 });

@@ -18,6 +18,11 @@ Oskari.clazz.define('Oskari.statistics.statsgrid.FlyoutManager', function (insta
         id : 'diagram',
         title: loc.tile.diagram,
         oskariClass :'Oskari.statistics.statsgrid.view.DiagramFlyout'
+    },
+    {   
+        id : 'filter',
+        title: loc.tile.filter,
+        oskariClass :'Oskari.statistics.statsgrid.view.Filter'
     }
     ];
 }, {
