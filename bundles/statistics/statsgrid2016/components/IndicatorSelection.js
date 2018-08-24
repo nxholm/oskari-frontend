@@ -122,11 +122,14 @@ Oskari.clazz.define('Oskari.statistics.statsgrid.IndicatorSelection', function (
             multi: true
         };
 
-        var regionFilterSelect = Oskari.clazz.create('Oskari.userinterface.component.SelectList');
-        var regionFilterDropdown = regionFilterSelect.create(this.service.getRegionsets(), regionOptions);
-        regionFilterDropdown.css({width: '100%'});
-        regionsetFilterElement.append(regionFilterDropdown);
-        regionFilterSelect.adjustChosen();
+        // var regionFilterSelect = Oskari.clazz.create('Oskari.userinterface.component.SelectList');
+        // var regionFilterDropdown = regionFilterSelect.create(this.service.getRegionsets(), regionOptions);
+        // regionFilterDropdown.css({width: '100%'});
+        // regionsetFilterElement.append(regionFilterDropdown);
+        // regionFilterSelect.adjustChosen();
+        var regionDropdown = Oskari.clazz.create('Oskari.userinterface.component.HtmlMultiselect');
+        regionDropdown.create(this.service.getRegionsets(), locale.panels.newSearch.selectRegionsetPlaceholder);
+        regionsetFilterElement.append(regionDropdown.getElement());
 
         var datasources = this.service.getDatasource();
         var sources = [];
@@ -193,7 +196,7 @@ Oskari.clazz.define('Oskari.statistics.statsgrid.IndicatorSelection', function (
             me._params.indicatorSelected(
                 dsSelect.getValue(),
                 indicSelect.getValue(),
-                regionFilterSelect.getValue(),
+                regionDropdown.getValue(),
                 seriesInput.isChecked());
         });
 
@@ -209,7 +212,7 @@ Oskari.clazz.define('Oskari.statistics.statsgrid.IndicatorSelection', function (
                 return;
             }
 
-            me._populateIndicators(indicSelect, dsSelect.getValue(), regionFilterSelect.getValue());
+            me._populateIndicators(indicSelect, dsSelect.getValue(), regionDropdown.getValue());
 
             btnAddIndicator.setHandler(function (event) {
                 event.stopPropagation();
@@ -247,17 +250,17 @@ Oskari.clazz.define('Oskari.statistics.statsgrid.IndicatorSelection', function (
             me._params.indicatorSelected(
                 dsSelect.getValue(),
                 indicSelect.getValue(),
-                regionFilterSelect.getValue(),
+                regionDropdown.getValue(),
                 seriesInput.isChecked());
         });
 
         regionsetFilterElement.on('change', function (evt) {
-            if (!regionFilterSelect.getValue()) {
+            if (!regionDropdown.getValue()) {
                 dsSelect.reset();
                 return;
             }
-            var unsupportedSelections = me.getUnsupportedDatasetsList(regionFilterSelect.getValue());
-            me._params.indicatorSelected(dsSelect.getValue(), indicSelect.getValue(), regionFilterSelect.getValue(), seriesInput.isChecked());
+            var unsupportedSelections = me.getUnsupportedDatasetsList(regionDropdown.getValue());
+            me._params.indicatorSelected(dsSelect.getValue(), indicSelect.getValue(), regionDropdown.getValue(), seriesInput.isChecked());
 
             if (unsupportedSelections) {
                 var ids = unsupportedSelections.map(function (iteration) {
@@ -295,7 +298,7 @@ Oskari.clazz.define('Oskari.statistics.statsgrid.IndicatorSelection', function (
                 return;
             }
             // update indicator list
-            me._populateIndicators(indicSelect, currentDS, regionFilterSelect.getValue());
+            me._populateIndicators(indicSelect, currentDS, regionDropdown.getValue());
         });
         me.setElement(main);
         return main;

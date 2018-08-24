@@ -1,0 +1,47 @@
+.oskari-html-multiselect {
+    position: relative;
+    font-family: Arial;
+}
+
+.oskari-html-multiselect > select {
+    display: none;
+}
+.oskari-html-unselectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.oskari-select-selected {
+    color:rgb(61, 61, 61);
+    box-shadow: inset 0 0 1px #000000;
+    padding: 4px 8px;
+    /* cursor: pointer; */
+    user-select: none;
+  }
+.select-items {
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    box-shadow: inset 0 0 1px #000000;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+  }
+  .select-items > div {
+    border-bottom: 0.5px solid transparent;
+    border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+    padding: 2px 4px;
+  }
+  .select-items > div:hover {
+    background-color: rgb(30, 146, 255);
+  }
+  /*hide the items when the select box is closed:*/
+  .select-hide {
+    display: none;
+  }
+  .test {
+      background-color: deeppink;
+  }

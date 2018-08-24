@@ -159,6 +159,9 @@ Oskari.clazz.define("Oskari.userinterface.bundle.ui.UserInterfaceBundle", functi
                 "src": "../../../../bundles/framework/divmanazer/component/SelectList.js"
             }, {
                 "type": "text/javascript",
+                "src": "../../../../bundles/framework/divmanazer/component/html_multiselect.js"
+            }, {
+                "type": "text/javascript",
                 "src": "../../../../bundles/framework/divmanazer/component/Chart.js"
             },  {
                 "type": "text/javascript",
@@ -280,10 +283,12 @@ Oskari.clazz.define("Oskari.userinterface.bundle.ui.UserInterfaceBundle", functi
             }, {
                 "type": "text/css",
                 "src": "../../../../bundles/framework/divmanazer/resources/css/modal.css"
-            },
-            {
+            }, {
                 "type": "text/css",
                 "src": "../../../../bundles/framework/divmanazer/resources/css/selectlist.css"
+            }, {
+                "type": "text/css",
+                "src": "../../../../bundles/framework/divmanazer/resources/css/html_multiselect.css"
             }, {
                 "type": "text/css",
                 "src": "../../../../bundles/framework/divmanazer/resources/css/badge.css"
